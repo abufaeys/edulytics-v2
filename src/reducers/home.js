@@ -2,8 +2,12 @@ import {
 	INCREMENT_REQUESTED,
 	INCREMENT,
 	DECREMENT_REQUESTED,
-	DECREMENT
+	DECREMENT,
+  GET_QUOTE_REQUESTED,
+  GOT_QUOTE
 } from '../constants/actionTypes.js';
+
+import request from 'request';
 
 /*
   TO BE DELETED
@@ -12,7 +16,9 @@ import {
 const initialState = {
   count: 0,
   isIncrementing: false,
-  isDecrementing: false
+  isDecrementing: false,
+  isFetchingQuote: false,
+  quote: "",
 }
 
 export default (state = initialState, action) => {
@@ -41,6 +47,19 @@ export default (state = initialState, action) => {
         ...state,
         count: state.count - 1,
         isDecrementing: !state.isDecrementing
+      }
+
+    case GET_QUOTE_REQUESTED:
+      return {
+        ...state,
+        GET_QUOTE_REQUESTED: true
+      }
+
+    case GOT_QUOTE:
+      return {
+        ...state,
+        quote: action.payload,
+        isFetchingQuote: !state.isFetchingQuote,
       }
 
     default:
@@ -97,5 +116,28 @@ export const decrementAsync = () => {
         type: DECREMENT
       })
     }, 3000)
+  }
+}
+
+export const getQuote = () => {
+  return dispatch => {
+    dispatch({
+      type: GET_QUOTE_REQUESTED
+    })
+
+    return request({
+      url: 'https://quotes.rest/qod',
+      method: 'GET',
+      json: true
+    }, (error, response, body) => {
+      if (error) {
+        console.log(error)
+      } else {
+        dispatch({
+          type: GOT_QUOTE,
+          payload: body.contents.quotes[0].quote,
+        })
+      }
+    })
   }
 }

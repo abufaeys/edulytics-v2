@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Button, Header } from 'semantic-ui-react';
 import {
   increment,
   incrementAsync,
   decrement,
-  decrementAsync
+  decrementAsync,
+  getQuote
 } from '../reducers/home'
 
 /*
   TO BE DELETED
 */
 class Home extends Component {
+
+
 	render() {
 	  return (
 	  	<div>
@@ -29,7 +32,8 @@ class Home extends Component {
       <Button onClick={this.props.decrementAsync} disabled={this.props.isDecrementing}>Decrement Async</Button>
     </p>
 
-    <p><Button onClick={() => this.props.changePage()}>Go to about page via redux</Button></p>
+    <p><Button onClick={this.props.getQuote}>Get QOTD</Button></p>
+    <Header as='h3'>Quote of the day: {this.props.quote}</Header>
 		  </div>
 	  )
 	}
@@ -40,6 +44,7 @@ const mapStateToProps = state => ({
   isIncrementing: state.home.isIncrementing,
   isDecrementing: state.home.isDecrementing,
   currentActiveUser: state.navigation.currentActiveUser,
+  quote: state.home.quote,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -47,6 +52,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   incrementAsync,
   decrement,
   decrementAsync,
+  getQuote,
   changePage: () => push('/about-us')
 }, dispatch)
 

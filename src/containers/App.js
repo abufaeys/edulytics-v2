@@ -7,7 +7,6 @@ import NavBar from "./NavBar";
 
 // Container components for routing are imported here
 import Home from './Home';
-import About from './About';
 import StudentDashboard from './Dashboards/StudentDashboard';
 
 class App extends Component {
@@ -27,7 +26,6 @@ class App extends Component {
           </header>
           <div>
             <Route exact path="/" component={Home} />
-            <Route exact path="/about-us" component={About} />
             <Route exact path="/dashboard/student" component={StudentDashboard} />            
           </div>
         </main>
