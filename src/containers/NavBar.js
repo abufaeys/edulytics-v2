@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   toggleActiveUser,
-  changeDashboardPage: (user) => push('/dashboard/' + user)
+  changeDashboardPage: (user) => push("/" + user + "/dashboard")
 }, dispatch)
 
 export default connect(

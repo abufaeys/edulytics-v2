@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 
 // Container components for routing are imported here
 import Home from './Home';
-import StudentDashboard from './Dashboards/StudentDashboard';
+import DashboardContainer from './DashboardContainer';
 
 class App extends Component {
   state = { visible: false }
@@ -26,7 +26,10 @@ class App extends Component {
           </header>
           <div>
             <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard/student" component={StudentDashboard} />            
+            <Route exact path="/Student/dashboard" render={(props) => (<DashboardContainer userType = "Student" />)} />
+            <Route exact path="/CourseInstructor/dashboard" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
+            <Route exact path="/CohortAdministrator/dashboard" render={(props) => (<DashboardContainer userType = "CohortAdministrator" />)} />
+            <Route exact path="/SystemAdministrator/dashboard" render={(props) => (<DashboardContainer userType = "SystemAdministrator" />)} />
           </div>
         </main>
       </div>

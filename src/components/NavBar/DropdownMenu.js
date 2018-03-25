@@ -12,7 +12,7 @@ const DropdownMenu = (props) => (
 	<Dropdown item text='Change User'>
   	<Dropdown.Menu>
       <Dropdown.Item 
-      	text='Course instructor'
+      	text='Course Instructor'
     	 	onClick={(event, data) => {
           // trigger change in the page
           props.changePage(data.text.replace(/\s/g, '')); // remove spaces in the text

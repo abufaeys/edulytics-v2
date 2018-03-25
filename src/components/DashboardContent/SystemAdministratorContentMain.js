@@ -9,7 +9,7 @@ import { Grid } from 'semantic-ui-react'
   For more info on Grids, link is here: https://react.semantic-ui.com/collections/grid#grid-example-divided-number
 */
 
-const DashboardMain = () => (
+const SystemAdministratorContentMain = () => (
   <Grid columns={3} divided>
     <Grid.Row>
       <Grid.Column>
@@ -37,4 +37,4 @@ const DashboardMain = () => (
   </Grid>
 )
 
-export default DashboardMain
+export default SystemAdministratorContentMain
