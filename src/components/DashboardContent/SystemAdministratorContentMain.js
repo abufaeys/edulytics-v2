@@ -10,8 +10,7 @@ import { Grid } from 'semantic-ui-react'
 */
 
 const SystemAdministratorContentMain = () => (
-  <Grid columns={3} divided>
-    <Grid.Row>
+  <Grid columns={3} doubling stackable>
       <Grid.Column>
         <h1> This is a grid </h1>
       </Grid.Column>
@@ -21,9 +20,6 @@ const SystemAdministratorContentMain = () => (
       <Grid.Column>
         <h1> This is a grid </h1>
       </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
       <Grid.Column>
         <h1> This is a grid </h1>
       </Grid.Column>
@@ -33,7 +29,6 @@ const SystemAdministratorContentMain = () => (
       <Grid.Column>
         <h1> This is a grid </h1>
       </Grid.Column>
-    </Grid.Row>
   </Grid>
 )
 
