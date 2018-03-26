@@ -10,30 +10,25 @@ import { Grid } from 'semantic-ui-react'
 */
 
 const StudentContentMain = () => (
-  <Grid columns={3} divided>
-    <Grid.Row>
-      <Grid.Column>
-        <h1> This is a grid </h1>
-      </Grid.Column>
-      <Grid.Column>
-        <h1> This is a grid </h1>
-      </Grid.Column>
-      <Grid.Column>
-        <h1> This is a grid </h1>
-      </Grid.Column>
-    </Grid.Row>
-
-    <Grid.Row>
-      <Grid.Column>
-        <h1> This is a grid </h1>
-      </Grid.Column>
-      <Grid.Column>
-        <h1> This is a grid </h1>
-      </Grid.Column>
-      <Grid.Column>
-        <h1> This is a grid </h1>
-      </Grid.Column>
-    </Grid.Row>
+  <Grid columns={3} doubling stackable>
+    <Grid.Column>
+      <h1> This is a grid </h1>
+    </Grid.Column>
+    <Grid.Column>
+      <h1> This is a grid </h1>
+    </Grid.Column>
+    <Grid.Column>
+      <h1> This is a grid </h1>
+    </Grid.Column>
+    <Grid.Column>
+      <h1> This is a grid </h1>
+    </Grid.Column>
+    <Grid.Column>
+      <h1> This is a grid </h1>
+    </Grid.Column>
+    <Grid.Column>
+      <h1> This is a grid </h1>
+    </Grid.Column>
   </Grid>
 )
 

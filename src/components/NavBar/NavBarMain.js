@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Menu } from 'semantic-ui-react'
 import DropdownMenu from './DropdownMenu'
 
@@ -13,7 +14,7 @@ const Navbar = (props) => (
     <Container>
 	  	<Menu.Menu position='left'>
 		  	<Menu.Item>
-		  		Edulytics
+		  		<Link to="/">Edulytics</Link>
 		  	</Menu.Item>
 		  </Menu.Menu>
       <Menu.Menu position='right'>
