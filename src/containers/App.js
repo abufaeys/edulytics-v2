@@ -26,10 +26,15 @@ class App extends Component {
           </header>
           <div>
             <Route exact path="/" component={Home} />
-            <Route exact path="/Student/dashboard" render={(props) => (<DashboardContainer userType = "Student" />)} />
-            <Route exact path="/CourseInstructor/dashboard" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
-            <Route exact path="/CohortAdministrator/dashboard" render={(props) => (<DashboardContainer userType = "CohortAdministrator" />)} />
-            <Route exact path="/SystemAdministrator/dashboard" render={(props) => (<DashboardContainer userType = "SystemAdministrator" />)} />
+            <Route exact path="/Student" render={(props) => (<DashboardContainer userType = "Student" />)} />
+            <Route exact path="/CourseInstructor" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
+            <Route exact path="/CohortAdministrator" render={(props) => (<DashboardContainer userType = "CohortAdministrator" />)} />
+            <Route exact path="/SystemAdministrator" render={(props) => (<DashboardContainer userType = "SystemAdministrator" />)} />
+
+            <Route exact path="/Student/:uid" render={(props) => (<DashboardContainer userType = "Student" userId = {props.match.params.uid}/>)} />
+            <Route exact path="/CourseInstructor/:uid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid}/>)} />
+            <Route exact path="/CohortAdministrator/:uid" render={(props) => (<DashboardContainer userType = "CohortAdministrator" userId = {props.match.params.uid}/>)} />
+            <Route exact path="/SystemAdministrator/:uid" render={(props) => (<DashboardContainer userType = "SystemAdministrator" userId = {props.match.params.uid}/>)} />
           </div>
         </main>
       </div>

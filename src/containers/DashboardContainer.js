@@ -14,6 +14,7 @@ import SystemAdministratorContentMain from '../components/DashboardContent/Syste
 class DashboardContainer extends Component {
 	render(props) {
 		var userType = this.props.userType;
+		var userId = this.props.userId;
 		const dashboardDict = {"Student": StudentContentMain,
 								"CourseInstructor": CourseInstructorContentMain,
 								"CohortAdministrator": CohortAdministratorContentMain,
@@ -21,7 +22,13 @@ class DashboardContainer extends Component {
 		var UserDashboard = dashboardDict[userType];
 	  return (
 	  	<div>
-		    <h1>{userType} Dashboard</h1>
+	  		{userId == null ?
+	  		(<h1>{userType} Dashboard (default)</h1>
+	  			):
+	  		(
+	  			<h1>{userType} Dashboard ({userId})</h1>
+	  			)
+	  		}
 		    <UserDashboard />
 		  </div>
 	  )
