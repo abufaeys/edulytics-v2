@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // Components shown on the main landing page are imported here
 import SidebarLeftOverlay from "../components/Sidebar/sidebar";
@@ -24,7 +24,7 @@ class App extends Component {
           <header style={{paddingTop: "10px", minHeight: "50px",}}>
             <NavBar toggleVisibility = {this.toggleVisibility}/>
           </header>
-          <div>
+          <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/Student" render={(props) => (<DashboardContainer userType = "Student" />)} />
             <Route exact path="/CourseInstructor" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
@@ -35,7 +35,9 @@ class App extends Component {
             <Route exact path="/CourseInstructor/:uid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid}/>)} />
             <Route exact path="/CohortAdministrator/:uid" render={(props) => (<DashboardContainer userType = "CohortAdministrator" userId = {props.match.params.uid}/>)} />
             <Route exact path="/SystemAdministrator/:uid" render={(props) => (<DashboardContainer userType = "SystemAdministrator" userId = {props.match.params.uid}/>)} />
-          </div>
+
+            <Route path="*" render={(props) => (<h1>Not Found</h1>)} />
+          </Switch>
         </main>
       </div>
     );
