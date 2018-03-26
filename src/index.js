@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
 import { ConnectedRouter } from 'react-router-redux';
+import '../node_modules/react-vis/dist/style.css';
 
 /*
   This file is not be edited
