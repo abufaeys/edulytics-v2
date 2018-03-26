@@ -32,7 +32,7 @@ class Home extends Component {
       <Button onClick={this.props.decrementAsync} disabled={this.props.isDecrementing}>Decrement Async</Button>
     </p>
 
-    <p><Button onClick={this.props.getQuote}>Get QOTD</Button></p>
+    <p><Button onClick={this.props.getQuote} disabled={this.props.isFetchingQuote}>Get QOTD</Button></p>
     <Header as='h3'>Quote of the day: {this.props.quote}</Header>
 		  </div>
 	  )
@@ -45,6 +45,7 @@ const mapStateToProps = state => ({
   isDecrementing: state.home.isDecrementing,
   currentActiveUser: state.navigation.currentActiveUser,
   quote: state.home.quote,
+  isFetchingQuote: state.home.isFetchingQuote,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

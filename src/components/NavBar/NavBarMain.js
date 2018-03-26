@@ -13,8 +13,8 @@ const Navbar = (props) => (
   <Menu fixed='top' inverted>
     <Container>
 	  	<Menu.Menu position='left'>
-		  	<Menu.Item>
-		  		<Link to="/">Edulytics</Link>
+		  	<Menu.Item onClick={props.goHomepage}>
+		  		Edulytics
 		  	</Menu.Item>
 		  </Menu.Menu>
       <Menu.Menu position='right'>

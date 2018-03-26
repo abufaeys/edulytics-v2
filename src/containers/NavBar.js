@@ -21,6 +21,7 @@ class NavBar extends Component {
 	  			DefaultUser = {this.props.currentActiveUser} 
 	  			toggleActiveUser={this.props.toggleActiveUser} 
 	  			changeDashboardPage={this.props.changeDashboardPage}
+	  			goHomepage={this.props.goHomepage}
 	  		/>
 		  </div>
 	  )
@@ -33,7 +34,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   toggleActiveUser,
-  changeDashboardPage: (user) => push("/" + user + "/dashboard")
+  changeDashboardPage: (user) => push("/" + user + "/dashboard"),
+  goHomepage: () => push('/')
 }, dispatch)
 
 export default connect(

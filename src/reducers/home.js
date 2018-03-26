@@ -52,7 +52,7 @@ export default (state = initialState, action) => {
     case GET_QUOTE_REQUESTED:
       return {
         ...state,
-        GET_QUOTE_REQUESTED: true
+        isFetchingQuote: true
       }
 
     case GOT_QUOTE:
