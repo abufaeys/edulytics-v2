@@ -3,7 +3,16 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Button, Header } from 'semantic-ui-react';
-import {  XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries } from "react-vis";
+import {
+  AreaSeries,
+  Crosshair,
+  XYPlot,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  VerticalGridLines,
+  LineMarkSeries
+} from 'react-vis';
 import {curveCatmullRom} from 'd3-shape';
 import {
   increment,
@@ -15,55 +24,42 @@ import {
 
 
 class Home extends Component {
+  state = {
+    crosshairValues: []
+  };
+
+  DATA = [
+    [
+      {x: 1, y: 10},
+      {x: 2, y: 10},
+      {x: 3, y: 13},
+      {x: 4, y: 7},
+    ]
+  ];
+  onMouseLeave = () => this.setState({crosshairValues: []});
+
+  onNearestX = (value, {index}) => {
+    console.log(this.state.crosshairValues);
+    this.setState({crosshairValues: [this.DATA[0][index]]});
+  }
 
 	render() {
 
 	  return (
 	  	<div align="center">
-        <XYPlot
-            width={300}
-            height={300}>
-            <HorizontalGridLines />
-            <VerticalGridLines />
-            <XAxis title="X Axis" position="start"/>
-            <YAxis title="Y Axis"/>
-            <LineSeries
-              className="first-series"
-              data={[
-                {x: 1, y: 3},
-                {x: 2, y: 5},
-                {x: 3, y: 15},
-                {x: 4, y: 12}
-              ]}/>
-            <LineSeries
-              className="second-series"
-              data={null}/>
-            <LineSeries
-              className="third-series"
-              curve={'curveMonotoneX'}
-              style={{
-                strokeDasharray: '2 2'
-              }}
-              data={[
-                {x: 1, y: 10},
-                {x: 2, y: 4},
-                {x: 3, y: 2},
-                {x: 4, y: 15}
-              ]}
-              strokeDasharray="7, 3"
-              />
-            <LineSeries
-              className="fourth-series"
-              curve={curveCatmullRom.alpha(0.5)}
-              data={[
-                {x: 1, y: 7},
-                {x: 2, y: 11},
-                {x: 3, y: 9},
-                {x: 4, y: 2}
-              ]}/>
-          </XYPlot>
-		    <h1>{this.props.currentActiveUser}</h1>
-		    <p>Count: {this.props.count}</p>
+      <XYPlot
+        width={300}
+        height={300}
+        onMouseLeave={this.onMouseLeave}>
+        <XAxis/>
+        <YAxis/>
+        <HorizontalGridLines />
+        <VerticalGridLines />
+        <AreaSeries getNull={(d) => d.y !== null} onNearestX={this.onNearestX} data={this.DATA[0]} />
+        <LineMarkSeries getNull={(d) => d.y !== null} data={this.DATA[1]} />
+        <Crosshair
+          values={this.state.crosshairValues}/>
+      </XYPlot>
 	  <p>
       <Button onClick={this.props.increment} disabled={this.props.isIncrementing}>Increment</Button>
       <Button onClick={this.props.incrementAsync} disabled={this.props.isIncrementing}>Increment Async</Button>
