@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { initialiseDatabases } from '../reducers/firebase';
 
 // Components shown on the main landing page are imported here
 import SidebarLeftOverlay from "../components/Sidebar/sidebar";
@@ -9,9 +13,6 @@ import NavBar from "./NavBar";
 import Home from './Home';
 import DashboardContainer from './DashboardContainer';
 
-import firebase from 'firebase';
-import store from '../store'; // to be changed to connect
-
 
 class App extends Component {
   state = { visible: false }
@@ -19,34 +20,13 @@ class App extends Component {
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   componentDidMount(){
-    var config = {
-      apiKey: "AIzaSyC1r8Jm7C_3Q_cAAY0cGP2-lydfL8SK130",
-      authDomain: "edulytics-437a6.firebaseapp.com",
-      databaseURL: "https://edulytics-437a6.firebaseio.com",
-      projectId: "edulytics-437a6",
-      storageBucket: "edulytics-437a6.appspot.com",
-      messagingSenderId: "631017845483"
-    };
-    firebase.initializeApp(config);
-
-    var db = firebase.database();
-    db.ref("/Static").on("value", data => {
-      if (data.val()) {
-        store.dispatch({type:"INITIALISE_STATIC_DATABASE", payload: data.val()});
-      }
-    });
-    db.ref("/Charts").on("value", data => {
-      if (data.val()) {
-        store.dispatch({type:"INITIALISE_CHARTS_DATABASE", payload: data.val()});
-      }
-    });
+    this.props.initialiseDatabases();
   }
 
   render() {
-    const { visible } = this.state.visible;
     return (
       <div>
-          <SidebarLeftOverlay visible={visible} setInvisible={this.toggleVisibility}/>
+          <SidebarLeftOverlay visible={this.state.visible} setInvisible={this.toggleVisibility}/>
         <main>
           <header style={{paddingTop: "10px", minHeight: "50px",}}>
             <NavBar toggleVisibility = {this.toggleVisibility}/>
@@ -71,5 +51,11 @@ class App extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+  initialiseDatabases
+}, dispatch)
 
-export default App;
+export default withRouter(connect(
+  null, 
+  mapDispatchToProps
+)(App))

@@ -13,7 +13,11 @@ import { connect } from 'react-redux';
 
 class StudentContentMain extends Component {
 
+
+  
+
   render(){
+
     return (
       <Grid columns={3} doubling stackable>
         <Grid.Column>
@@ -24,10 +28,10 @@ class StudentContentMain extends Component {
         </Grid.Column>
         <Grid.Column>
           <Card
-        header={this.props.staticDatabaseLoaded === true ? (this.props.userNames[this.props.userId]): "loading"} //replace this with this.props.userId
-        meta='Friend'
-        description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-      />
+            header={this.props.fetchChartsDatabase === "FETCHED" ? this.props.userNames[this.props.userId] : "loading"}
+            meta='Friend'
+            description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+          />
         </Grid.Column>
         <Grid.Column>
           <Feed>
@@ -59,7 +63,7 @@ class StudentContentMain extends Component {
 
 const mapStateToProps = state => ({
   userNames:state.firebase.staticDatabase.UserNames,
-  staticDatabaseLoaded:state.firebase.staticDatabaseLoaded
+  fetchChartsDatabase: state.firebase.fetchChartsDatabase,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
