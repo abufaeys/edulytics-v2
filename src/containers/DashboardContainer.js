@@ -29,7 +29,7 @@ class DashboardContainer extends Component {
 	  			<h1>{userType} Dashboard ({userId})</h1>
 	  			)
 	  		}
-		    <UserDashboard />
+		    <UserDashboard userId = {userId} />
 		  </div>
 	  )
 	}

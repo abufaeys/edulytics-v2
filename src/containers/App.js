@@ -9,15 +9,41 @@ import NavBar from "./NavBar";
 import Home from './Home';
 import DashboardContainer from './DashboardContainer';
 
+import firebase from 'firebase';
+import store from '../store';
+
 
 class App extends Component {
   state = { visible: false }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
-  render() {
-    const { visible } = this.state;
+  componentDidMount(){
+    var config = {
+      apiKey: "AIzaSyC1r8Jm7C_3Q_cAAY0cGP2-lydfL8SK130",
+      authDomain: "edulytics-437a6.firebaseapp.com",
+      databaseURL: "https://edulytics-437a6.firebaseio.com",
+      projectId: "edulytics-437a6",
+      storageBucket: "edulytics-437a6.appspot.com",
+      messagingSenderId: "631017845483"
+    };
+    firebase.initializeApp(config);
 
+    var db = firebase.database();
+    db.ref("/Static").on("value", data => {
+      if (data.val()) {
+        store.dispatch({type:"INITIALISE_STATIC_DATABASE", payload: data.val()});
+      }
+    });
+    db.ref("/Charts").on("value", data => {
+      if (data.val()) {
+        store.dispatch({type:"INITIALISE_CHARTS_DATABASE", payload: data.val()});
+      }
+    });
+  }
+
+  render() {
+    const { visible } = this.state.visible;
     return (
       <div>
           <SidebarLeftOverlay visible={visible} setInvisible={this.toggleVisibility}/>
@@ -44,7 +70,6 @@ class App extends Component {
     );
   }
 }
-
 
 
 export default App;

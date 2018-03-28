@@ -13,7 +13,6 @@ import {
   VerticalGridLines,
   LineMarkSeries
 } from 'react-vis';
-import {curveCatmullRom} from 'd3-shape';
 import {
   increment,
   incrementAsync,
@@ -39,7 +38,6 @@ class Home extends Component {
   onMouseLeave = () => this.setState({crosshairValues: []});
 
   onNearestX = (value, {index}) => {
-    console.log(this.state.crosshairValues);
     this.setState({crosshairValues: [this.DATA[0][index]]});
   }
 
@@ -57,8 +55,7 @@ class Home extends Component {
         <VerticalGridLines />
         <AreaSeries getNull={(d) => d.y !== null} onNearestX={this.onNearestX} data={this.DATA[0]} />
         <LineMarkSeries getNull={(d) => d.y !== null} data={this.DATA[1]} />
-        <Crosshair
-          values={this.state.crosshairValues}/>
+        <Crosshair values={this.state.crosshairValues} />
       </XYPlot>
 	  <p>
       <Button onClick={this.props.increment} disabled={this.props.isIncrementing}>Increment</Button>
