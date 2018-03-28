@@ -33,3 +33,13 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export const initialiseStaticDatabase = (data) => {
+  return dispatch => {
+
+    dispatch({
+      type: "INITIALISE_STATIC_DATABASE",
+      payload: data
+    })
+  }
+}
