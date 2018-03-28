@@ -31,7 +31,7 @@ const initialState = {
   staticDatabase:{},
   fetchStaticDatabaseStatus: "IDLE",
   chartsDatabase:{},
-  fetchChartsDatabase: "IDLE",
+  fetchChartsDatabaseStatus: "IDLE",
 }
 
 export default (state = initialState, action) => {
@@ -58,20 +58,20 @@ export default (state = initialState, action) => {
     case FETCHING_CHARTS_DATABASE:
       return {
         ...state,
-        fetchChartsDatabase: "FETCHING",
+        fetchChartsDatabaseStatus: "FETCHING",
       }
 
     case FETCHED_CHARTS_DATABASE:
       return {
         ...state,
         chartsDatabase: action.payload,
-        fetchChartsDatabase: "FETCHED"
+        fetchChartsDatabaseStatus: "FETCHED"
       }
 
     case FETCHING_CHARTS_DATABASE_ERROR:
       return {
         ...state,
-        fetchChartsDatabase: "ERROR"
+        fetchChartsDatabaseStatus: "ERROR"
       }
 
     default:

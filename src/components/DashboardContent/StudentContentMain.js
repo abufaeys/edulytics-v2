@@ -28,7 +28,7 @@ class StudentContentMain extends Component {
         </Grid.Column>
         <Grid.Column>
           <Card
-            header={this.props.fetchChartsDatabase === "FETCHED" ? this.props.userNames[this.props.userId] : "loading"}
+            header={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.userNames[this.props.userId] : "loading"}
             meta='Friend'
             description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
           />
@@ -63,7 +63,7 @@ class StudentContentMain extends Component {
 
 const mapStateToProps = state => ({
   userNames:state.firebase.staticDatabase.UserNames,
-  fetchChartsDatabase: state.firebase.fetchChartsDatabase,
+  fetchChartsDatabaseStatus: state.firebase.fetchChartsDatabaseStatus,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
