@@ -10,7 +10,7 @@ import Home from './Home';
 import DashboardContainer from './DashboardContainer';
 
 import firebase from 'firebase';
-import store from '../store';
+import store from '../store'; // to be changed to connect
 
 
 class App extends Component {

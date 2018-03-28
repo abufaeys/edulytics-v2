@@ -24,7 +24,7 @@ class StudentContentMain extends Component {
         </Grid.Column>
         <Grid.Column>
           <Card
-        header={this.props.userNames["0UyuO8FU0Tc0K5H7zYfIAtNGiE52"]} //replace this with this.props.userId
+        header={this.props.userId} //replace this with this.props.userId
         meta='Friend'
         description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
       />

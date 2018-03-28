@@ -12,7 +12,9 @@ import SystemAdministratorContentMain from '../components/DashboardContent/Syste
 */
 
 class DashboardContainer extends Component {
-	render(props) {
+
+
+	render() {
 		var userType = this.props.userType;
 		var userId = this.props.userId;
 		const dashboardDict = {"Student": StudentContentMain,
