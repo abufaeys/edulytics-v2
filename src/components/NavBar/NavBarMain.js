@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Container, Menu, Dropdown } from 'semantic-ui-react'
 import UserDropdown from './UserDropdown'
+import UserSearch from './UserSearch'
 
 /*
   This is the Main template on the navigation bar.
@@ -8,22 +9,29 @@ import UserDropdown from './UserDropdown'
     - Display the entire navigation bar
 */
 
-const Navbar = (props) => (
-  <Menu pointing secondary size="large">
-    <Container>
-		<Menu.Item name="Edulytics" active = {true} icon="fork" onClick={props.goHomepage} />
-      <Menu.Menu position='right'>
-		  	<UserDropdown DefaultUser = {props.DefaultUser} toggleActiveUser={props.toggleActiveUser} changePage={props.changeDashboardPage}/>
-		  	<Dropdown item icon="options">
-			  	<Dropdown.Menu>
-			    	<Dropdown.Item text="Settings" icon="setting" />
-			    	<Dropdown.Item text="Settings2" icon="settings" />
-			  	</Dropdown.Menu>
-		  	</Dropdown>
-      </Menu.Menu>
-    </Container>
-  </Menu>
-)
+
+class NavBarMain extends Component{
+	render(){
+		
+		return(
+		<Menu pointing secondary size="large">
+		    <Container>
+				<Menu.Item name="Edulytics" active = {true} icon="fork" onClick={this.props.goHomepage} />
+				<Menu.Menu position='right'>
+					<UserSearch />
+				  	<UserDropdown DefaultUser = {this.props.DefaultUser} toggleActiveUser={this.props.toggleActiveUser} changePage={this.props.changeDashboardPage}/>
+				  	<Dropdown item icon="options">
+					  	<Dropdown.Menu>
+					    	<Dropdown.Item text="Settings" icon="setting" />
+					    	<Dropdown.Item text="Settings2" icon="settings" />
+					  	</Dropdown.Menu>
+				  	</Dropdown>
+				</Menu.Menu>
+		    </Container>
+		  </Menu>
+		  )
+	}
+}
 
 
-export default Navbar
+export default NavBarMain
