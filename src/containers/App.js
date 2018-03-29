@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { initialiseDatabases } from '../reducers/firebase';
 
 // Components shown on the main landing page are imported here
-import SidebarLeftOverlay from "../components/Sidebar/sidebar";
 import NavBar from "./NavBar";
 
 // Container components for routing are imported here
@@ -26,7 +25,6 @@ class App extends Component {
   render() {
     return (
       <div>
-          <SidebarLeftOverlay visible={this.state.visible} setInvisible={this.toggleVisibility}/>
         <main>
           <header style={{paddingTop: "10px", minHeight: "50px",}}>
             <NavBar toggleVisibility = {this.toggleVisibility}/>

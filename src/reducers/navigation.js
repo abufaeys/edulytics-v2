@@ -10,7 +10,7 @@ import {
 */
 
 const initialState = {
-  currentActiveUser : 'Course instructor',
+  currentActiveUser : 'System Administrator',
 }
 
 export default (state = initialState, action) => {

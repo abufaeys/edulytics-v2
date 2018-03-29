@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Menu } from 'semantic-ui-react'
-import DropdownMenu from './DropdownMenu'
+import { Container, Menu, Dropdown } from 'semantic-ui-react'
+import UserDropdown from './UserDropdown'
 
 /*
   This is the Main template on the navigation bar.
@@ -9,18 +9,17 @@ import DropdownMenu from './DropdownMenu'
 */
 
 const Navbar = (props) => (
-  <Menu fixed='top' inverted>
+  <Menu pointing secondary size="large">
     <Container>
-	  	<Menu.Menu position='left'>
-		  	<Menu.Item onClick={props.goHomepage}>
-		  		Edulytics
-		  	</Menu.Item>
-		  </Menu.Menu>
+		<Menu.Item name="Edulytics" active = {true} icon="fork" onClick={props.goHomepage} />
       <Menu.Menu position='right'>
-		  	<Menu.Item active={false} onClick={props.toggleVisibility}>
-		  		Options
-		  	</Menu.Item>
-		  		<DropdownMenu toggleActiveUser={props.toggleActiveUser} changePage={props.changeDashboardPage}/>
+		  	<UserDropdown DefaultUser = {props.DefaultUser} toggleActiveUser={props.toggleActiveUser} changePage={props.changeDashboardPage}/>
+		  	<Dropdown item icon="options">
+			  	<Dropdown.Menu>
+			    	<Dropdown.Item text="Settings" icon="setting" />
+			    	<Dropdown.Item text="Settings2" icon="settings" />
+			  	</Dropdown.Menu>
+		  	</Dropdown>
       </Menu.Menu>
     </Container>
   </Menu>

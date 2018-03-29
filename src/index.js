@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store, { history } from './store';
 import { ConnectedRouter } from 'react-router-redux';
 import '../node_modules/react-vis/dist/style.css';
+import '../node_modules/semantic-ui-css/semantic.min.css';
 
 /*
   This file is not be edited
