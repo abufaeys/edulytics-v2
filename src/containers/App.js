@@ -19,7 +19,9 @@ class App extends Component {
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   componentDidMount(){
-    this.props.initialiseDatabases();
+    if (this.props.fetchChartsDatabase !== 'FETCHED') {
+      this.props.initialiseDatabases();
+    }
   }
 
   render() {
@@ -49,11 +51,15 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  fetchChartsDatabase: state.firebase.fetchChartsDatabase,
+})
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   initialiseDatabases
 }, dispatch)
 
 export default withRouter(connect(
-  null, 
+  mapStateToProps, 
   mapDispatchToProps
 )(App))
