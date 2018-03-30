@@ -21,11 +21,11 @@ class UserSearch extends Component{
       var user = null;
       for (var userId in this.props.userNames){
         user = {};
-        user.userId = userId;
+        user.userid = userId;
         user.name = this.props.userNames[userId];
         for (var courseId in this.props.courseStudents){
           if (this.props.courseStudents[courseId].includes(userId)){
-            user.courseName = this.props.courseList[courseId];
+            user.coursename = this.props.courseList[courseId];
             this.searchList.push(user);
             break;
           }
@@ -34,7 +34,7 @@ class UserSearch extends Component{
     }
   }
 
-  searchStudentFromList(searchTerm, noResults){
+  searchStudentFromList(searchTerm, noResults) {
     var results = [];
     var counter = 0;
     var index = 0;
@@ -53,7 +53,7 @@ class UserSearch extends Component{
 
   handleResultSelect = (e, { result }) => {
     this.resetComponent();
-    this.props.goToStudentDashboard(result.userId);
+    this.props.goToStudentDashboard(result.userid);
   }
 
   handleSearchChange = (e, { value }) => {
@@ -69,12 +69,12 @@ class UserSearch extends Component{
 
   render(){
     const { isLoading, value, results } = this.state
-    const resultRenderer = ({ name, userId, courseName }) => [
-        <div key='content' className='content'>
+    const resultRenderer = ({ name, userid, coursename }) => 
+        <div key={userid} className='content'>
           {name && <div className='title'>{name}</div>}
-          {courseName && <div className='description'>{courseName}</div>}
-        </div>,
-      ]
+          {coursename && <div className='description'>{coursename}</div>}
+        </div>
+      
     return(
       <Search
         as={Menu.Item}
@@ -84,7 +84,6 @@ class UserSearch extends Component{
         results={results}
         value={value}
         resultRenderer={resultRenderer}
-        {...this.props}
       />
       )
   }
@@ -98,7 +97,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   goToStudentDashboard: (studentId) => push("/Student/" + studentId),
-  goHomepage: () => push('/')
 }, dispatch)
 
 export default connect(
