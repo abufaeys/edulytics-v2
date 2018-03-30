@@ -21,9 +21,15 @@ class UserSearch extends Component{
       var user = null;
       for (var userId in this.props.userNames){
         user = {};
-        user.description = userId;
-        user.title = this.props.userNames[userId];
-        this.searchList.push(user);
+        user.userId = userId;
+        user.name = this.props.userNames[userId];
+        for (var courseId in this.props.courseStudents){
+          if (this.props.courseStudents[courseId].includes(userId)){
+            user.courseName = this.props.courseList[courseId];
+            this.searchList.push(user);
+            break;
+          }
+        }
       }
     }
   }
@@ -34,7 +40,7 @@ class UserSearch extends Component{
     var index = 0;
     while (index < this.searchList.length && counter < noResults){
       var user = this.searchList[index];
-      if (user.title.toUpperCase().includes(searchTerm.toUpperCase())){
+      if (user.name.toUpperCase().includes(searchTerm.toUpperCase())){
         results.push(user);
         counter++;
       }
@@ -47,7 +53,7 @@ class UserSearch extends Component{
 
   handleResultSelect = (e, { result }) => {
     this.resetComponent();
-    this.props.goToStudentDashboard(result.description);
+    this.props.goToStudentDashboard(result.userId);
   }
 
   handleSearchChange = (e, { value }) => {
@@ -63,7 +69,12 @@ class UserSearch extends Component{
 
   render(){
     const { isLoading, value, results } = this.state
-
+    const resultRenderer = ({ name, userId, courseName }) => [
+        <div key='content' className='content'>
+          {name && <div className='title'>{name}</div>}
+          {courseName && <div className='description'>{courseName}</div>}
+        </div>,
+      ]
     return(
       <Search
         as={Menu.Item}
@@ -72,6 +83,7 @@ class UserSearch extends Component{
         onSearchChange={this.handleSearchChange}
         results={results}
         value={value}
+        resultRenderer={resultRenderer}
         {...this.props}
       />
       )
@@ -80,6 +92,8 @@ class UserSearch extends Component{
 
 const mapStateToProps = state => ({
   userNames: state.firebase.staticDatabase.UserNames,
+  courseStudents: state.firebase.staticDatabase.CourseStudents,
+  courseList: state.firebase.staticDatabase.CourseList,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
