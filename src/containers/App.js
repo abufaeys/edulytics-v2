@@ -12,40 +12,37 @@ import NavBar from "./NavBar";
 import Home from './Home';
 import DashboardContainer from './DashboardContainer';
 
-
 class App extends Component {
-  state = { visible: false }
-
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   componentDidMount(){
     if (this.props.fetchChartsDatabase !== 'FETCHED') {
       this.props.initialiseDatabases();
     }
+    
   }
-
+  
   render() {
     return (
-      <div>
-        <main>
-          <header style={{paddingTop: "10px", minHeight: "50px",}}>
-            <NavBar toggleVisibility = {this.toggleVisibility}/>
+      <div style={{height:"100%"}}>
+          <header style={{paddingTop: "10px", height: "50px",}}>
+            <NavBar />
           </header>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/Student" render={(props) => (<DashboardContainer userType = "Student" />)} />
-            <Route exact path="/CourseInstructor" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
-            <Route exact path="/CohortAdministrator" render={(props) => (<DashboardContainer userType = "CohortAdministrator" />)} />
-            <Route exact path="/SystemAdministrator" render={(props) => (<DashboardContainer userType = "SystemAdministrator" />)} />
+          <main style = {{paddingTop: "10px"}}>
+            <Switch>
+              <Route exact path="/" render={(location) => (<Home location={location.location}/>)} />
+              <Route exact path="/Student" render={(props) => (<DashboardContainer userType = "Student" />)} />
+              <Route exact path="/CourseInstructor" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
+              <Route exact path="/CohortAdministrator" render={(props) => (<DashboardContainer userType = "CohortAdministrator" />)} />
+              <Route exact path="/SystemAdministrator" render={(props) => (<DashboardContainer userType = "SystemAdministrator" />)} />
 
-            <Route exact path="/Student/:uid" render={(props) => (<DashboardContainer userType = "Student" userId = {props.match.params.uid}/>)} />
-            <Route exact path="/CourseInstructor/:uid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid}/>)} />
-            <Route exact path="/CohortAdministrator/:uid" render={(props) => (<DashboardContainer userType = "CohortAdministrator" userId = {props.match.params.uid}/>)} />
-            <Route exact path="/SystemAdministrator/:uid" render={(props) => (<DashboardContainer userType = "SystemAdministrator" userId = {props.match.params.uid}/>)} />
+              <Route exact path="/Student/:uid" render={(props) => (<DashboardContainer userType = "Student" userId = {props.match.params.uid}/>)} />
+              <Route exact path="/CourseInstructor/:uid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid}/>)} />
+              <Route exact path="/CohortAdministrator/:uid" render={(props) => (<DashboardContainer userType = "CohortAdministrator" userId = {props.match.params.uid}/>)} />
+              <Route exact path="/SystemAdministrator/:uid" render={(props) => (<DashboardContainer userType = "SystemAdministrator" userId = {props.match.params.uid}/>)} />
 
-            <Route path="*" render={(props) => (<h1>Not Found</h1>)} />
-          </Switch>
-        </main>
+              <Route path="*" render={(props) => (<h1>Not Found</h1>)} />
+            </Switch>
+          </main>
       </div>
     );
   }
@@ -53,6 +50,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   fetchChartsDatabase: state.firebase.fetchChartsDatabase,
+  location: state.routing.location,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

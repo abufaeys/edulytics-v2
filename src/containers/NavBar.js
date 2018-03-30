@@ -17,7 +17,6 @@ class NavBar extends Component {
 	  return (
 	  	<div>
 	  		<NavBarMain 
-	  			toggleVisibility = {this.props.toggleVisibility} 
 	  			DefaultUser = {this.props.currentActiveUser} 
 	  			toggleActiveUser={this.props.toggleActiveUser} 
 	  			changeDashboardPage={this.props.changeDashboardPage}

@@ -10,13 +10,13 @@ import '../node_modules/react-vis/dist/style.css';
 import '../node_modules/semantic-ui-css/semantic.min.css';
 
 /*
-  This file is not be edited
+  This file is not to be edited
 */
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <div style={{height:"100%"}}>
         <App />
       </div>
     </ConnectedRouter>
