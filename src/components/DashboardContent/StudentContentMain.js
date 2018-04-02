@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Statistic, Card } from 'semantic-ui-react'
+import { Grid, Statistic, Card, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import StudentHistogram from './StudentVisuals/StudentHistogram.js';
+import StudentHistogram from './StudentVisuals/StudentHistogram';
+import StudentAverageTime from './StudentVisuals/AverageTime';
+import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
+import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 
 /*
   This is the main template for each of the dashboard we will do.
@@ -19,29 +22,32 @@ class StudentContentMain extends Component {
 
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
-        <Grid columns={4} doubling as={Card.Group} >
+        <Grid columns={3} doubling as={Card.Group} >
           <Card>  
-            <Statistic label='Downloads' value='5,550' />
+            <Statistic label='Elo Rating' value='5,550' />
           </Card>      
           <Card>
-            <Statistic label='Downloads' value='5,550' />
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <StudentAverageTime chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }
           </Card>   
           <Card>
-            <Statistic label='Downloads' value='5,550' />
-          </Card>
-          <Card>
-            <Statistic label='Downloads' value='5,550' />
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <StudentLevelsCompleted chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }
           </Card>           
         </Grid>
-        <Grid columns={3} doubling stackable as={Card.Group} >
+        <Grid columns={2} doubling stackable as={Card.Group} >
           <Card>
             <StudentHistogram chartsDatabase={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.chartsDatabase : {}}/>
           </Card>
           <Card>
-            <StudentHistogram chartsDatabase={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.chartsDatabase : {}}/>
-          </Card>
-          <Card>
-            <StudentHistogram chartsDatabase={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.chartsDatabase : {}}/>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <AssignmentTracker chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }
           </Card>
           <Grid.Column>
             <Card
