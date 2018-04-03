@@ -14,8 +14,8 @@ const AssignmentRow = ({assignment,deadline,details}) => {
 		// if past due date, row will be colored red
 		return (
 			<Table.Row>
-				<Table.Cell negative>{assignment}</Table.Cell>
-				<Table.Cell negative>{dateFormat}</Table.Cell>
+				<Table.Cell negative width={4}>{assignment}</Table.Cell>
+				<Table.Cell negative width={4}>{dateFormat}</Table.Cell>
 				<Table.Cell negative>{details}</Table.Cell>
 			</Table.Row>
 		)

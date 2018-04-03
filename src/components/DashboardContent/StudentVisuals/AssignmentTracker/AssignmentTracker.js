@@ -11,7 +11,9 @@ const getAssignments = (chartsDatabase, userId) => {
 	let assignments = []
 	for (let course in data) {
 		for (let assignment in data[course]) {
-			assignments.push(data[course][assignment]);
+			if (data[course][assignment] !== false) {
+				assignments.push(data[course][assignment]);
+			}
 		}
 	}
 	return assignments
