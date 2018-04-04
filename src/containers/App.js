@@ -23,7 +23,7 @@ class App extends Component {
   
   render() {
     return (
-      <div style={{height:"100%"}}>
+      <div>
           <header style={{paddingTop: "10px", height: "50px",}}>
             <NavBar />
           </header>

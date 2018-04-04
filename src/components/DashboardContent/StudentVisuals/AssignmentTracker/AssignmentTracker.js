@@ -21,7 +21,6 @@ const getAssignments = (chartsDatabase, userId) => {
 
 const AssignmentTracker = ({chartsDatabase, userId}) => {
 	let data = getAssignments(chartsDatabase,userId);
-	console.log(data)
 	return (
 		<Table compact celled >
 		  <Table.Header>

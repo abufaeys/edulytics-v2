@@ -3,7 +3,7 @@ import { Grid, Statistic, Card, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import StudentHistogram from './StudentVisuals/StudentHistogram';
+import ProgressChartMain from './StudentVisuals/ProgressChart/ProgressChartMain';
 import StudentAverageTime from './StudentVisuals/AverageTime';
 import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
@@ -41,7 +41,10 @@ class StudentContentMain extends Component {
         </Grid>
         <Grid columns={2} doubling stackable as={Card.Group} >
           <Card>
-            <StudentHistogram chartsDatabase={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.chartsDatabase : {}}/>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <ProgressChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId}/> :
+              <Loader active inline='centered'/>
+            }
           </Card>
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
