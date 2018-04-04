@@ -8,6 +8,7 @@ import StudentAverageTime from './StudentVisuals/AverageTime';
 import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 import SkillsRadarChartMain from './StudentVisuals/SkillsRadarChart/SkillsRadarChartMain';
+import MissionTableMain from './StudentVisuals/MissionTable/MissionTableMain';
 
 /*
   This is the main template for each of the dashboard we will do.
@@ -54,10 +55,16 @@ class StudentContentMain extends Component {
             }
           </Card>
         </Grid>
-        <Grid columns={1} doubling as={Card.Group} >
+        <Grid columns={2} doubling as={Card.Group} >
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }
+          </Card>
+          <Card >
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <MissionTableMain studentData={this.props.chartsDatabase.Student.studentlevelPlaytime.data[this.props.userId]} /> :
               <Loader active inline='centered'/>
             }
           </Card>
