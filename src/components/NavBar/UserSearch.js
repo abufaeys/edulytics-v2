@@ -22,16 +22,18 @@ class UserSearch extends Component{
       for (var userId in this.props.userNames){
         user = {};
         user.userid = userId;
-        user.name = this.props.userNames[userId];
+        user.name = this.props.userNames[userId]["name"];
+        user.type = this.props.userNames[userId]["userType"];
         for (var courseId in this.props.courseStudents){
           if (this.props.courseStudents[courseId].includes(userId)){
             user.coursename = this.props.courseList[courseId];
-            this.searchList.push(user);
             break;
           }
         }
+        this.searchList.push(user);
       }
     }
+    console.log(this.searchList);
   }
 
   searchStudentFromList(searchTerm, noResults) {
@@ -69,10 +71,11 @@ class UserSearch extends Component{
 
   render(){
     const { isLoading, value, results } = this.state
-    const resultRenderer = ({ name, userid, coursename }) => 
+    const resultRenderer = ({ name, userid, type, coursename }) => 
         <div key={userid} className='content'>
-          {name && <div className='title'>{name}</div>}
-          {coursename && <div className='description'>{coursename}</div>}
+          <div className='title'>{name}</div>
+          {type === "Student" ? <div className='description'>{coursename}</div>
+          : <div className='description'>{type}</div>}
         </div>
       
     return(
