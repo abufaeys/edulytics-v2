@@ -33,7 +33,6 @@ class UserSearch extends Component{
         this.searchList.push(user);
       }
     }
-    console.log(this.searchList);
   }
 
   searchStudentFromList(searchTerm, noResults) {
@@ -42,10 +41,11 @@ class UserSearch extends Component{
     var index = 0;
     while (index < this.searchList.length && counter < noResults){
       var user = this.searchList[index];
-      if (user.name.toUpperCase().includes(searchTerm.toUpperCase())){
-        results.push(user);
-        counter++;
-      }
+        if (String(user.name).toUpperCase().includes(searchTerm.toUpperCase())){
+          results.push(user);
+          counter++;
+        }
+      
       index++;
     }
     return results;
@@ -55,7 +55,7 @@ class UserSearch extends Component{
 
   handleResultSelect = (e, { result }) => {
     this.resetComponent();
-    this.props.goToStudentDashboard(result.userid);
+    this.props.goToDashboard(result.type, result.userid);
   }
 
   handleSearchChange = (e, { value }) => {
@@ -99,7 +99,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  goToStudentDashboard: (studentId) => push("/Student/" + studentId),
+  goToDashboard: (userType, userId) => push("/" + userType + "/" + userId),
 }, dispatch)
 
 export default connect(
