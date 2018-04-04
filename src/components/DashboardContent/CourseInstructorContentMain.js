@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import StudentHistogram from './StudentVisuals/StudentHistogram';
 import StudentAverageTime from './StudentVisuals/AverageTime';
-import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
+import AverageLevelsCompleted from './CourseInstructorVisuals/AverageLevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 /*
   This is the main template for each of the dashboard we will do.
@@ -18,6 +18,12 @@ import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTrac
 class CourseInstructorContentMain extends Component {
 
   render(){
+    for (var course in this.props.staticDatabase.CourseList){
+      if (this.props.staticDatabase.CourseList["instructorId"] == this.props.userId){
+        var courseId = course;
+        break;
+      }
+    }
 
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
@@ -33,7 +39,7 @@ class CourseInstructorContentMain extends Component {
           </Card>
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <StudentLevelsCompleted chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <AverageLevelsCompleted chartsDatabase={this.props.chartsDatabase} courseId={this.courseId} /> :
               <Loader active inline='centered'/>
             }
           </Card>           

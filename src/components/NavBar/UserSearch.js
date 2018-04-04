@@ -26,7 +26,7 @@ class UserSearch extends Component{
         user.type = this.props.userNames[userId]["userType"];
         for (var courseId in this.props.courseStudents){
           if (this.props.courseStudents[courseId].includes(userId)){
-            user.coursename = this.props.courseList[courseId];
+            user.coursename = this.props.courseList[courseId]["name"];
             break;
           }
         }
