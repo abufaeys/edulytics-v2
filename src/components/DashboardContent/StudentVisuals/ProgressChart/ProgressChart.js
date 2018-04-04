@@ -10,45 +10,31 @@ import {
 	ResponsiveContainer 
 } from 'recharts';
 
-
-const data = [
-      {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-      {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-      {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
-      {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
-      {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
-      {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
-      {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
-];
-
-const processData = (studentData, cohortData) => {
+const processData = (studentData) => {
 	let output = []
 	for (let levelName in studentData) {
-		if (levelName in cohortData) {
-			output.push({
-				name: levelName,
-				studentTimeTaken: studentData[levelName],
-				averageTimeTaken: cohortData[levelName], 
-			})
-		}
+		output.push({
+			name: levelName,
+			studentTimeTaken: studentData[levelName]["playtime"],
+			averageTimeTaken: Math.round(studentData[levelName]["average"])
+		})
 	}
 	return output
 }
 
-const ProgressChart = ({studentData, cohortData}) => {
-	let data = processData(studentData,cohortData);
+const ProgressChart = ({studentData, timeTakenVisibility, averageVisibility}) => {
+	let data = processData(studentData);
 
 	return (
 		<ResponsiveContainer width="100%" height={400}>
-	  	<LineChart  data={data}
+	  	<LineChart data={data}
 	          margin={{top: 5, right: 30, left: 20, bottom: 5}}>
 	     <XAxis dataKey="name"/>
 	     <YAxis/>
-	     <CartesianGrid strokeDasharray="3 3"/>
 	     <Tooltip/>
 	     <Legend/>
-	     <Line type="monotone" dataKey="studentTimeTaken" name="Time Taken" stroke="#8884d8" activeDot={{r: 8}}/>
-	     <Line type="monotone" dataKey="averageTimeTaken" name="Average Cohort Time" stroke="#82ca9d" />
+	     {timeTakenVisibility && <Line type="monotone" dataKey="studentTimeTaken" name="Time Taken" stroke="#8884d8" activeDot={{r: 8}}/>}
+	     {averageVisibility && <Line type="monotone" dataKey="averageTimeTaken" name="Average Cohort Time" stroke="#82ca9d" />}
 	    </LineChart>
 	  </ResponsiveContainer>
   );

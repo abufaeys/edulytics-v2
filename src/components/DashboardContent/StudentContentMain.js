@@ -7,6 +7,7 @@ import ProgressChartMain from './StudentVisuals/ProgressChart/ProgressChartMain'
 import StudentAverageTime from './StudentVisuals/AverageTime';
 import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
+import SkillsRadarChartMain from './StudentVisuals/SkillsRadarChart/SkillsRadarChartMain';
 
 /*
   This is the main template for each of the dashboard we will do.
@@ -39,7 +40,7 @@ class StudentContentMain extends Component {
             }
           </Card>           
         </Grid>
-        <Grid columns={2} doubling stackable as={Card.Group} >
+        <Grid columns={2} doubling as={Card.Group} >
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <ProgressChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId}/> :
@@ -52,13 +53,14 @@ class StudentContentMain extends Component {
               <Loader active inline='centered'/>
             }
           </Card>
-          <Grid.Column>
-            <Card
-              header={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.userNames[this.props.userId] : "loading"}
-              meta='Friend'
-              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-            />
-          </Grid.Column>
+        </Grid>
+        <Grid columns={1} doubling as={Card.Group} >
+          <Card>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }
+          </Card>
         </Grid>
       </div>
       )
