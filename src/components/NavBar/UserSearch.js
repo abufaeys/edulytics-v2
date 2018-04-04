@@ -41,7 +41,7 @@ class UserSearch extends Component{
     var index = 0;
     while (index < this.searchList.length && counter < noResults){
       var user = this.searchList[index];
-        if (String(user.name).toUpperCase().includes(searchTerm.toUpperCase())){
+        if (String(user.name).toUpperCase().includes(searchTerm.toUpperCase()) || String(user.type).toUpperCase().includes(searchTerm.toUpperCase())){
           results.push(user);
           counter++;
         }

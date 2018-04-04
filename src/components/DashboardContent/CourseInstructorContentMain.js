@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import StudentHistogram from './StudentVisuals/StudentHistogram';
-import StudentAverageTime from './StudentVisuals/AverageTime';
+import TotalStudents from './CourseInstructorVisuals/TotalStudents';
 import AverageLevelsCompleted from './CourseInstructorVisuals/AverageLevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 /*
@@ -18,12 +18,6 @@ import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTrac
 class CourseInstructorContentMain extends Component {
 
   render(){
-    for (var course in this.props.staticDatabase.CourseList){
-      if (this.props.staticDatabase.CourseList["instructorId"] == this.props.userId){
-        var courseId = course;
-        break;
-      }
-    }
 
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
@@ -33,13 +27,13 @@ class CourseInstructorContentMain extends Component {
           </Card>
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <StudentAverageTime chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <TotalStudents staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
               <Loader active inline='centered'/>
             }
           </Card>
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <AverageLevelsCompleted chartsDatabase={this.props.chartsDatabase} courseId={this.courseId} /> :
+              <AverageLevelsCompleted staticDatabase={this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId = {this.props.userId} /> :
               <Loader active inline='centered'/>
             }
           </Card>           
@@ -71,6 +65,7 @@ const mapStateToProps = state => ({
   userNames:state.firebase.staticDatabase.UserNames,
   fetchChartsDatabaseStatus: state.firebase.fetchChartsDatabaseStatus,
   chartsDatabase: state.firebase.chartsDatabase,
+  staticDatabase: state.firebase.staticDatabase
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
