@@ -32,7 +32,7 @@ class CourseInstructorContentMain extends Component {
   render(){
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
-      {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
+      {this.props.courseId !== undefined && this.props.fetchStaticDatabaseStatus === "FETCHED" ?
         <h1>{this.props.staticDatabase.CourseList[this.props.courseId]["name"]}</h1> :
         <Loader active inline='centered'/>
       }

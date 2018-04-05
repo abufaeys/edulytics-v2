@@ -24,14 +24,7 @@ class DashboardContainer extends Component {
 								"SystemAdministrator": SystemAdministratorContentMain};
 		var UserDashboard = dashboardDict[userType];
 	  return (
-	  	<div >
-	  		{userId == null ?
-	  		(<h1>{userType} Dashboard (default)</h1>
-	  			):
-	  		(
-	  			<h1>{userType} Dashboard ({userId})</h1>
-	  			)
-	  		}
+	  	<div>
 		    <UserDashboard userId = {userId} courseId = {courseId}/>
 		  </div>
 	  )

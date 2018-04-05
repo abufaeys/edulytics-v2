@@ -24,6 +24,10 @@ class StudentContentMain extends Component {
 
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
+        {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
+          <h1>{this.props.staticDatabase.UserNames[this.props.userId]["name"]}</h1> :
+          <Loader active inline='centered'/>
+        }
         <Grid columns={3} doubling as={Card.Group} >
           <Card>  
             <Statistic label='Elo Rating' value='5,550' />
@@ -77,7 +81,9 @@ class StudentContentMain extends Component {
 const mapStateToProps = state => ({
   userNames:state.firebase.staticDatabase.UserNames,
   fetchChartsDatabaseStatus: state.firebase.fetchChartsDatabaseStatus,
+  fetchStaticDatabaseStatus: state.firebase.fetchStaticDatabaseStatus,
   chartsDatabase: state.firebase.chartsDatabase,
+  staticDatabase: state.firebase.staticDatabase
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
