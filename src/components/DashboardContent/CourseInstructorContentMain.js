@@ -43,13 +43,13 @@ class CourseInstructorContentMain extends Component {
           </Card>
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <TotalStudents staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <TotalStudents staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId}/> :
               <Loader active inline='centered'/>
             }
           </Card>
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <AverageLevelsCompleted staticDatabase={this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId = {this.props.userId} /> :
+              <AverageLevelsCompleted staticDatabase={this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId = {this.props.userId} courseId={this.props.courseId}/> :
               <Loader active inline='centered'/>
             }
           </Card>           

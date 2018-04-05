@@ -7,13 +7,7 @@ import { Statistic } from 'semantic-ui-react';
 
 class AverageLevelsCompleted extends Component{
 	render(){
-		for (var course in this.props.chartsDatabase.CourseInstructor.averageLevels["data"]){
-	        if (this.props.staticDatabase.CourseList[course]["instructorId"] == this.props.userId){
-	          var courseId = course;
-	          break;
-	        }
-	    }
-	    var averageLevelsValue = this.props.chartsDatabase.CourseInstructor.averageLevels["data"][courseId]
+	    var averageLevelsValue = this.props.chartsDatabase.CourseInstructor.averageLevels["data"][this.props.courseId]
 		return (
 			<Statistic label="Average Levels Completed" value={averageLevelsValue !== undefined ? averageLevelsValue : 0} />
 		)
