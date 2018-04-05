@@ -3,8 +3,7 @@ import {
 	LineChart, 
 	Line, 
 	XAxis, 
-	YAxis, 
-	CartesianGrid, 
+	YAxis,  
 	Tooltip, 
 	Legend,
 	ResponsiveContainer 

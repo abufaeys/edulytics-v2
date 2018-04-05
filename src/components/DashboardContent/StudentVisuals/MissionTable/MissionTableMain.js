@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Sticky, Visibility } from 'semantic-ui-react';
+import { Table, } from 'semantic-ui-react';
 import MissionRow from './MissionTableRow';
 
 const formatData = (studentData) => {
