@@ -17,6 +17,7 @@ class DashboardContainer extends Component {
 	render() {
 		var userType = this.props.userType;
 		var userId = this.props.userId;
+		var courseId = this.props.courseId;
 		const dashboardDict = {"Student": StudentContentMain,
 								"CourseInstructor": CourseInstructorContentMain,
 								"CohortAdministrator": CohortAdministratorContentMain,
@@ -31,7 +32,7 @@ class DashboardContainer extends Component {
 	  			<h1>{userType} Dashboard ({userId})</h1>
 	  			)
 	  		}
-		    <UserDashboard userId = {userId} />
+		    <UserDashboard userId = {userId} courseId = {courseId}/>
 		  </div>
 	  )
 	}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Statistic, Card, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import StudentHistogram from './StudentVisuals/StudentHistogram';
 import TotalStudents from './CourseInstructorVisuals/TotalStudents';
@@ -16,11 +17,26 @@ import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTrac
 */
 
 class CourseInstructorContentMain extends Component {
+  componentDidUpdate(){
+    if (this.props.courseId === undefined && this.props.fetchChartsDatabaseStatus === "FETCHED"){
+      for (var course in this.props.chartsDatabase.CourseInstructor.averageLevels["data"]){
+          if (this.props.staticDatabase.CourseList[course]["instructorId"] == this.props.userId){
+            var courseId = course;
+            break;
+          }
+      }
+      this.props.changeToCoursePage(this.props.userId, courseId);
+    }
+  }
 
   render(){
-
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
+      {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
+        <h1>{this.props.staticDatabase.CourseList[this.props.courseId]["name"]}</h1> :
+        <Loader active inline='centered'/>
+      }
+      
         <Grid columns={3} doubling as={Card.Group} >
           <Card>  
             <Statistic label='Elo Rating' value='5,550' />
@@ -64,12 +80,13 @@ class CourseInstructorContentMain extends Component {
 const mapStateToProps = state => ({
   userNames:state.firebase.staticDatabase.UserNames,
   fetchChartsDatabaseStatus: state.firebase.fetchChartsDatabaseStatus,
+  fetchStaticDatabaseStatus: state.firebase.fetchStaticDatabaseStatus,
   chartsDatabase: state.firebase.chartsDatabase,
   staticDatabase: state.firebase.staticDatabase
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+  changeToCoursePage: (userId, courseId) => push("/CourseInstructor/" + userId + "/" + courseId),
 }, dispatch)
 
 export default connect(
