@@ -15,7 +15,7 @@ const PentagonChart = ({levelStatus, completedness, relativeAvgtime, proactivene
 	const data = [
 	    { subject: 'Level Status', A: Math.round(levelStatus*100)},
 	    { subject: 'Completedness', A: Math.round(completedness*100)},
-	    { subject: 'average time', A: 100-Math.round(relativeAvgtime*100)},
+	    { subject: 'average time', A: 100-Math.round(relativeAvgtime["self"]*100)},
 	    { subject: 'proactiveness', A: Math.round(proactiveness*100)},
 	    { subject: 'effort', A: Math.round(effort.self*100)},
 	    { subject: 'Youtube', A: 65},
