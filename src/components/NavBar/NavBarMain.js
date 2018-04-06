@@ -18,8 +18,8 @@ class NavBarMain extends Component{
 		    <Container>
 				<Menu.Item name="Edulytics" active = {true} icon="fork" onClick={this.props.goHomepage} />
 				<Menu.Menu position='right'>
-					<UserSearch />
-				  	<UserDropdown DefaultUser = {this.props.DefaultUser} toggleActiveUser={this.props.toggleActiveUser} changePage={this.props.changeDashboardPage}/>
+					{this.props.currentActiveUser === "Student" ? <UserSearch style = {{display: "none"}} /> : <UserSearch />}
+				  	<UserDropdown currentActiveUser = {this.props.currentActiveUser} toggleActiveUser={this.props.toggleActiveUser} changePage={this.props.changeDashboardPage}/>
 				  	<Dropdown item icon="options">
 					  	<Dropdown.Menu>
 					    	<Dropdown.Item text="Settings" icon="setting" />

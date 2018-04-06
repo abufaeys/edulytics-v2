@@ -9,13 +9,12 @@ import { Dropdown } from 'semantic-ui-react'
 */
 
 const UserDropdown = (props) => (
-	<Dropdown item text={props.DefaultUser}>
+	<Dropdown item text={props.currentActiveUser}>
   	<Dropdown.Menu>
       <Dropdown.Item 
         text = "Student"
         icon = "student"
         onClick={(event, data) => {
-          props.changePage(data.text.replace(/\s/g, ''));
           props.toggleActiveUser(data.text)
         }}/>
       <Dropdown.Item 
@@ -23,21 +22,18 @@ const UserDropdown = (props) => (
         icon = "user"
     	 	onClick={(event, data) => {
           // trigger change in the page
-          props.changePage(data.text.replace(/\s/g, '')); // remove spaces in the text
           props.toggleActiveUser(data.text)
         }}/>
       <Dropdown.Item 
       	text="Cohort Administrator"
         icon="group"
     	 	onClick={(event, data) => {
-          props.changePage(data.text.replace(/\s/g, ''));
           props.toggleActiveUser(data.text)
         }}/>
       <Dropdown.Item 
       	text="System Administrator"
         icon="settings"
     	 	onClick={(event, data) => {
-          props.changePage(data.text.replace(/\s/g, ''));
           props.toggleActiveUser(data.text)
         }}/>
   	</Dropdown.Menu>

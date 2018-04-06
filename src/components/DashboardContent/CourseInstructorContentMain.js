@@ -17,18 +17,6 @@ import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTrac
 */
 
 class CourseInstructorContentMain extends Component {
-  componentDidUpdate(){
-    if (this.props.courseId === undefined && this.props.fetchChartsDatabaseStatus === "FETCHED"){
-      for (var course in this.props.chartsDatabase.CourseInstructor.averageLevels["data"]){
-          if (this.props.staticDatabase.CourseList[course]["instructorId"] == this.props.userId){
-            var courseId = course;
-            break;
-          }
-      }
-      this.props.changeToCoursePage(this.props.userId, courseId);
-    }
-  }
-
   render(){
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
@@ -86,7 +74,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changeToCoursePage: (userId, courseId) => push("/CourseInstructor/" + userId + "/" + courseId),
 }, dispatch)
 
 export default connect(

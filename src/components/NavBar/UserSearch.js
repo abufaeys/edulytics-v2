@@ -18,22 +18,36 @@ class UserSearch extends Component{
     }
   componentDidUpdate(prevProps, prevState){
     if (prevProps.userNames !== this.props.userNames){
-      var user = null;
       for (var userId in this.props.userNames){
-        user = {};
-        user.userid = userId;
-        user.name = this.props.userNames[userId]["name"];
-        user.type = this.props.userNames[userId]["userType"];
-        for (var courseId in this.props.courseStudents){
-          if (this.props.courseStudents[courseId].includes(userId)){
-            user.coursename = this.props.courseList[courseId]["name"];
-            break;
+        if (this.props.userNames[userId]["userType"] === "Student"){
+          for (var courseId in this.props.courseStudents){
+            if (this.props.courseStudents[courseId].includes(userId)){
+              var user = {};
+              user.userid = userId;
+              user.name = this.props.userNames[userId]["name"];
+              user.type = this.props.userNames[userId]["userType"];
+              user.coursename = this.props.courseList[courseId]["name"];
+              user.courseid = courseId;
+              this.searchList.push(user);
+            }
           }
         }
-        this.searchList.push(user);
+        else { /* assumed to be course instructor*/
+          for (var courseId in this.props.courseList){
+            if (this.props.courseList[courseId]["instructorId"] === userId){
+              var user = {};
+              user.userid = userId;
+              user.name = this.props.userNames[userId]["name"];
+              user.type = this.props.userNames[userId]["userType"];
+              user.coursename = this.props.courseList[courseId]["name"];
+              user.courseid = courseId;
+              this.searchList.push(user);
+            }
+        }
       }
     }
   }
+}
 
   searchStudentFromList(searchTerm, noResults) {
     var results = [];
@@ -41,7 +55,7 @@ class UserSearch extends Component{
     var index = 0;
     while (index < this.searchList.length && counter < noResults){
       var user = this.searchList[index];
-        if (String(user.name).toUpperCase().includes(searchTerm.toUpperCase()) || String(user.type).toUpperCase().includes(searchTerm.toUpperCase())){
+        if (String(user.name).toUpperCase().includes(searchTerm.toUpperCase()) || String(user.coursename).toUpperCase().includes(searchTerm.toUpperCase())){
           results.push(user);
           counter++;
         }
@@ -55,7 +69,13 @@ class UserSearch extends Component{
 
   handleResultSelect = (e, { result }) => {
     this.resetComponent();
-    this.props.goToDashboard(result.type, result.userid);
+    if (result.type === "Student"){
+      this.props.goToDashboard("Student", result.userid, "");
+    }
+    else {
+      this.props.goToDashboard("CourseInstructor", result.userid, result.courseid);
+    }
+    
   }
 
   handleSearchChange = (e, { value }) => {
@@ -75,7 +95,7 @@ class UserSearch extends Component{
         <div key={userid} className='content'>
           <div className='title'>{name}</div>
           {type === "Student" ? <div className='description'>{coursename}</div>
-          : <div className='description'>{type}</div>}
+          : <div className='description'>{coursename}</div>}
         </div>
       
     return(
@@ -87,6 +107,7 @@ class UserSearch extends Component{
         results={results}
         value={value}
         resultRenderer={resultRenderer}
+        style={this.props.style}
       />
       )
   }
@@ -99,7 +120,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  goToDashboard: (userType, userId) => push("/" + userType + "/" + userId),
+  goToDashboard: (userType, userId, courseId) => push("/" + userType + "/" + userId + "/" + courseId),
 }, dispatch)
 
 export default connect(
