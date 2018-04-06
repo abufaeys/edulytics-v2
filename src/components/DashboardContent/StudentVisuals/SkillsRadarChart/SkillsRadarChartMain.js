@@ -12,6 +12,7 @@ export default class SkillsRadarChartMain extends Component {
 					relativeAvgtime={this.props.chartsDatabase.Student.relativeAvgtime.data[this.props.userId]}
 					proactiveness={this.props.chartsDatabase.Student.studentProactiveness.data[this.props.userId]}
 					effort={this.props.chartsDatabase.Student.normalizedTotalplaytime.data[this.props.userId]}
+					studentName={this.props.userName}
 				/>
 			</div>
 		)

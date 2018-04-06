@@ -8,7 +8,7 @@ import StudentAverageTime from './StudentVisuals/AverageTime';
 import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 import SkillsRadarChartMain from './StudentVisuals/SkillsRadarChart/SkillsRadarChartMain';
-import MissionTableMain from './StudentVisuals/MissionTable/MissionTableMain';
+import ProfileCard from './StudentVisuals/ProfileCard';
 
 /*
   This is the main template for each of the dashboard we will do.
@@ -24,11 +24,15 @@ class StudentContentMain extends Component {
 
     return (
       <div style={{"backgroundColor": "#F2F2F2"}}>
-        {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
-          <h1>{this.props.staticDatabase.UserNames[this.props.userId]["name"]}</h1> :
-          <Loader active inline='centered'/>
-        }
-        <Grid columns={3} doubling as={Card.Group} >
+
+        <Grid columns={4} doubling as={Card.Group} >
+          {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
+            <ProfileCard
+              name={this.props.userNames[this.props.userId].name}
+              photoUrl={this.props.userNames[this.props.userId].photoURL}
+            /> :
+            <Loader active inline='centered'/>
+          }          
           <Card>  
             <Statistic label='Elo Rating' value='5,550' />
           </Card>      
@@ -45,33 +49,32 @@ class StudentContentMain extends Component {
             }
           </Card>           
         </Grid>
+        <Grid columns={3} doubling as={Card.Group} >
+          <Card>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} 
+                userName={this.props.userNames[this.props.userId].name}/> :
+              <Loader active inline='centered'/>
+            }
+          </Card>
+          <Card>
+          </Card>
+
+        </Grid>
         <Grid columns={2} doubling as={Card.Group} >
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <ProgressChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId}/> :
               <Loader active inline='centered'/>
-            }
+            }                
           </Card>
-          <Card>
+          <Card >
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <AssignmentTracker chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
               <Loader active inline='centered'/>
             }
           </Card>
-        </Grid>
-        <Grid columns={2} doubling as={Card.Group} >
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>
-          <Card >
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <MissionTableMain studentData={this.props.chartsDatabase.Student.studentlevelPlaytime.data[this.props.userId]} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>
+
         </Grid>
       </div>
       )

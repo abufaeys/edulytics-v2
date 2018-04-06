@@ -8,26 +8,16 @@ import { Table } from 'semantic-ui-react';
 
 const AssignmentRow = ({assignment,deadline,details}) => {
 	let date = new moment(deadline);
-	let dateFormat = date.format("Do MMMM YYYY h:mm A")
-	let now = new moment();
-	if (date < now) {
-		// if past due date, row will be colored red
-		return (
-			<Table.Row>
-				<Table.Cell negative width={4}>{assignment}</Table.Cell>
-				<Table.Cell negative width={4}>{dateFormat}</Table.Cell>
-				<Table.Cell negative>{details}</Table.Cell>
-			</Table.Row>
-		)
-	}
-	// else, row will be colored green
+	let dateFormat = date.format("Do MMMM YYYY h:mm A");
+	
 	return (
 		<Table.Row>
-			<Table.Cell positive>{assignment}</Table.Cell>
-			<Table.Cell positive>{dateFormat}</Table.Cell>
-			<Table.Cell positive>{details}</Table.Cell>
+			<Table.Cell style={{wordWrap: 'break-word'}}>{assignment}</Table.Cell>
+			<Table.Cell style={{wordWrap: 'break-word'}}>{dateFormat}</Table.Cell>
+			<Table.Cell style={{wordWrap: 'break-word'}}>{details}</Table.Cell>
 		</Table.Row>
 	)
+
 }
 
 export default AssignmentRow;

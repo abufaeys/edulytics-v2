@@ -11,20 +11,20 @@ import {
 
 
 
-const PentagonChart = ({levelStatus, completedness, relativeAvgtime, proactiveness, effort}) => {
+const PentagonChart = ({levelStatus, completedness, relativeAvgtime, proactiveness, effort, studentName}) => {
 	const data = [
-	    { subject: 'Level Status', A: Math.round(levelStatus*100)},
-	    { subject: 'Completedness', A: Math.round(completedness*100)},
-	    { subject: 'average time', A: 100-Math.round(relativeAvgtime["self"]*100)},
-	    { subject: 'proactiveness', A: Math.round(proactiveness*100)},
-	    { subject: 'effort', A: Math.round(effort.self*100)},
-	    { subject: 'Youtube', A: 65},
+	    { subject: 'Hardworking', A: Math.round(levelStatus*100)},
+	    { subject: 'Dedication', A: Math.round(completedness*100)},
+	    { subject: 'Mastery', A: 100-Math.round(relativeAvgtime["self"]*100)},
+	    { subject: 'Proactive', A: Math.round(proactiveness*100)},
+	    { subject: 'Effort', A: Math.round(effort.self*100)},
+	    { subject: 'Diligence', A: 65},
 	];	
 
 	return (
 		<ResponsiveContainer width="100%" height={500}>
 	  	<RadarChart outerRadius={150} data={data}>
-	      <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
+	      <Radar name={studentName} dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
 	      <PolarGrid />
 	      <Tooltip/>
 	      <PolarAngleAxis dataKey="subject" />

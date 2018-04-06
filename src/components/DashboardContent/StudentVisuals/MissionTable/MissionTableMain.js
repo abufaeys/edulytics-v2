@@ -50,7 +50,7 @@ class MissionTableMain extends Component {
 		const { column, data, direction } = this.state
 		
 		return (
-			<div style={{height:"600px", overflow:"scroll"}}>
+			<div style={{height:"200px", overflow:"scroll", width:"100%"}}>
 				<Table compact celled sortable>
 				  <Table.Header>
 				    <Table.Row>
