@@ -6,6 +6,7 @@ import { push } from 'react-router-redux';
 
 import StudentHistogram from './StudentVisuals/StudentHistogram';
 import TotalStudents from './CourseInstructorVisuals/TotalStudents';
+import Leaderboard from './CourseInstructorVisuals/Leaderboard'
 import AverageLevelsCompleted from './CourseInstructorVisuals/AverageLevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 /*
@@ -43,21 +44,18 @@ class CourseInstructorContentMain extends Component {
           </Card>           
         </Grid>
         <Grid columns={2} doubling stackable as={Card.Group} >
-          <Card>
-            <StudentHistogram chartsDatabase={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.chartsDatabase : {}}/>
-          </Card>
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <AssignmentTracker chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>
-          <Grid.Column>
-            <Card
-              header={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.userNames[this.props.userId] : "loading"}
-              meta='Friend'
-              description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-            />
+          <Grid.Column width={13}>
+            <Card fluid>
+              <StudentHistogram chartsDatabase={this.props.fetchChartsDatabaseStatus === "FETCHED" ? this.props.chartsDatabase : {}}/>
+            </Card>
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <Card fluid>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <Leaderboard courseId = {this.props.courseId} /> :
+                <Loader active inline='centered'/>
+              }
+            </Card>
           </Grid.Column>
         </Grid>
       </div>
