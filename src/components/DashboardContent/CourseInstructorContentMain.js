@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { Grid, Statistic, Card, Loader, Header } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 
-import StudentHistogram from './StudentVisuals/StudentHistogram';
 import TotalStudents from './CourseInstructorVisuals/TotalStudents';
 import Leaderboard from './CourseInstructorVisuals/Leaderboard'
 import AverageLevelsCompleted from './CourseInstructorVisuals/AverageLevelsCompleted';
 import AverageTimePerLevel from './CourseInstructorVisuals/AverageTimePerLevel';
 import SubmissionByHour from './CourseInstructorVisuals/SubmissionByHour';
-import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
+import AverageSubmissionHoursContainer from './CourseInstructorVisuals/AverageSubmissionHours/AverageSubmissionHoursContainer';
 /*
   This is the main template for each of the dashboard we will do.
   This file is only to be changed if:
@@ -45,31 +43,44 @@ class CourseInstructorContentMain extends Component {
             }
           </Card>           
         </Grid>
-        <Grid columns={2} doubling stackable as={Card.Group} >
-          <Grid.Column width={13}>
-            <Card fluid>
-              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-                <div>
-                <Header as="h1" textAlign="center">Average Time Taken Per Level</Header>
-                <AverageTimePerLevel chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId} />
-                </div> :
-                <Loader active inline='centered'/>
-              }
-            </Card>
-          </Grid.Column>
-          <Grid.Column width={3}>
-            <Card fluid>
-              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-                <div style={{"padding":"1em"}}>
-                <Header as="h1" textAlign="center">Leaderboard</Header>
-                <Leaderboard courseId = {this.props.courseId} />
-                </div> :
-                <Loader active inline='centered'/>
-              }
-            </Card>
-          </Grid.Column>
+        <Grid columns={2} doubling stackable as={Card.Group}>
+          <Grid.Row>
+            <Grid.Column width={13}>
+              <Grid.Row style={{"paddingBottom":"1.5em"}}>
+                <Card fluid>
+                  {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                    <div>
+                    <Header as="h1" textAlign="center">Average Time Taken Per Level</Header>
+                    <AverageTimePerLevel chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId} />
+                    </div> :
+                    <Loader active inline='centered'/>
+                  }
+                </Card>
+              </Grid.Row>
+              <Grid.Row style={{"padding":"0em"}}>
+                <Card fluid>
+                  {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                    <AverageSubmissionHoursContainer courseId={this.props.courseId}
+                    initialAssignmentId={Object.keys(this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId])[0]}/> :
+                    <Loader active inline='centered'/>
+                  }
+                </Card>
+              </Grid.Row>
+            </Grid.Column>
+            <Grid.Column width={3} stretched>
+              <Card fluid>
+                {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                  <div style={{"padding":"1em"}}>
+                  <Header as="h1" textAlign="center">Leaderboard</Header>
+                  <Leaderboard courseId = {this.props.courseId} />
+                  </div> :
+                  <Loader active inline='centered'/>
+                }
+              </Card>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
-        <Grid>
+        <Grid columns={1} as={Card.Group}>
           <Card fluid>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { ResponsiveContainer } from 'recharts';
-import { XYPlot, XAxis, YAxis, HeatmapSeries, Crosshair } from 'react-vis';
+import { XYPlot, XAxis, YAxis, HeatmapSeries } from 'react-vis';
 
 
 class SubmissionByHour extends Component{

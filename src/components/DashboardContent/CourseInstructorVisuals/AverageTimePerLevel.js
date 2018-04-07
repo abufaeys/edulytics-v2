@@ -3,11 +3,9 @@ import {
 	AreaChart,
 	CartesianGrid,
 	Area,
-	Line, 
 	XAxis, 
 	YAxis,  
 	Tooltip, 
-	Legend,
 	ResponsiveContainer 
 } from 'recharts';
 
