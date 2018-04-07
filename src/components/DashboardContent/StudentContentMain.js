@@ -60,7 +60,7 @@ class StudentContentMain extends Component {
               <Loader active inline='centered'/>
             }
           </Card>
-          <Grid.Column style={{overflow:"scroll",height:'500px',}}>
+          <Grid.Column style={{overflow:"scroll",height:'600px',}}>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <RecommendationList chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
               <Loader active inline='centered'/>

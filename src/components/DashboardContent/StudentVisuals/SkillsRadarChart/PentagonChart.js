@@ -28,7 +28,7 @@ const PentagonChart = ({levelStatus, completedness, relativeAvgtime, proactivene
 	      <PolarGrid />
 	      <Tooltip/>
 	      <PolarAngleAxis dataKey="subject" />
-	      <PolarRadiusAxis angle={60} domain={['auto', 'auto']}/>
+	      <PolarRadiusAxis angle={60} domain={[0, 100]}/>
 	    </RadarChart>
 	  </ResponsiveContainer>
   );	

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProgressChart from './ProgressChart';
-import { Button } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 
 import MissionTableMain from '../MissionTable/MissionTableMain';
 
@@ -14,7 +14,7 @@ class ProgressChartMain extends Component {
 	render() {
 		return (
 			<div style={{width:"100%",height:"100%"}}>
-
+				<Header as="h1" textAlign="center">Codecombat Level Progress Tracker</Header>
 				<ProgressChart 
 					studentData={this.props.chartsDatabase.Student.studentlevelPlaytime.data[this.props.userId]}
 					timeTakenVisibility = {this.state.timeTakenVisibility}
