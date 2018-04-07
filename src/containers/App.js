@@ -30,10 +30,6 @@ class App extends Component {
           <main style = {{paddingTop: "10px"}}>
             <Switch>
               <Route exact path="/" render={(location) => (<Home location={location.location}/>)} />
-              <Route exact path="/Student" render={(props) => (<DashboardContainer userType = "Student" />)} />
-              <Route exact path="/CourseInstructor" render={(props) => (<DashboardContainer userType = "CourseInstructor" />)} />
-              <Route exact path="/CohortAdministrator" render={(props) => (<DashboardContainer userType = "CohortAdministrator" />)} />
-              <Route exact path="/SystemAdministrator" render={(props) => (<DashboardContainer userType = "SystemAdministrator" />)} />
 
               <Route exact path="/Student/:uid" render={(props) => (<DashboardContainer userType = "Student" userId = {props.match.params.uid}/>)} />
               <Route exact path="/CourseInstructor/:uid/:courseid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid} courseId = {props.match.params.courseid}/>)} />

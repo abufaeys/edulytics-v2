@@ -26,7 +26,7 @@ class StudentContentMain extends Component {
   render(){
 
     return (
-      <div style={{"backgroundColor": "#F2F2F2"}}>
+      <div style={{"backgroundColor": "#F2F2F2", "padding":"3em"}}>
 
         <Grid columns={4} doubling as={Card.Group} >
           {this.props.fetchStaticDatabaseStatus === "FETCHED" ?

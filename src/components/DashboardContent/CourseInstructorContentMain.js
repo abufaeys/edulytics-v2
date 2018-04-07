@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Statistic, Card, Loader } from 'semantic-ui-react'
+import { Grid, Statistic, Card, Loader, Header } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -22,7 +22,7 @@ import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTrac
 class CourseInstructorContentMain extends Component {
   render(){
     return (
-      <div style={{"backgroundColor": "#F2F2F2"}}>
+      <div style={{"backgroundColor": "#F2F2F2", "padding": "3em"}}>
       {this.props.courseId !== undefined && this.props.fetchStaticDatabaseStatus === "FETCHED" ?
         <h1>{this.props.staticDatabase.CourseList[this.props.courseId]["name"]}</h1> :
         <Loader active inline='centered'/>
@@ -49,7 +49,10 @@ class CourseInstructorContentMain extends Component {
           <Grid.Column width={13}>
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-                <AverageTimePerLevel chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId} /> :
+                <div>
+                <Header as="h1" textAlign="center">Average Time Taken Per Level</Header>
+                <AverageTimePerLevel chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId} />
+                </div> :
                 <Loader active inline='centered'/>
               }
             </Card>
@@ -57,7 +60,10 @@ class CourseInstructorContentMain extends Component {
           <Grid.Column width={3}>
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-                <Leaderboard courseId = {this.props.courseId} /> :
+                <div style={{"padding":"1em"}}>
+                <Header as="h1" textAlign="center">Leaderboard</Header>
+                <Leaderboard courseId = {this.props.courseId} />
+                </div> :
                 <Loader active inline='centered'/>
               }
             </Card>
@@ -66,7 +72,10 @@ class CourseInstructorContentMain extends Component {
         <Grid>
           <Card fluid>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <SubmissionByHour chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} /> :
+              <div>
+              <Header as="h1" textAlign="center">Average Submission Times By Hour</Header>
+              <SubmissionByHour chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} />
+              </div> :
               <Loader active inline='centered'/>
             }
           </Card>

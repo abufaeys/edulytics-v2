@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { ResponsiveContainer } from 'recharts';
 import { XYPlot, XAxis, YAxis, HeatmapSeries, Crosshair } from 'react-vis';
 
@@ -20,6 +21,7 @@ class SubmissionByHour extends Component{
 		}
 		return (
 			<ResponsiveContainer width="100%" height={600}>
+			
 		  		<XYPlot
 				  width={300}
 				  height={300}>
