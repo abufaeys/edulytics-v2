@@ -7,9 +7,9 @@ const RecommendationItem = ({url, title, imgUrl, genre}) => {
 		<Card>
 			<Card.Content>
 				<Image floated='right' size='mini' src={imgUrl} />
-				<Card.Header>Based on your <b>{genre}</b> trait</Card.Header>
-				<Card.Description as='a' href={url}>
-					{title}
+				<Card.Header as='a' href={url}>{title}</Card.Header>
+				<Card.Description>
+					Based on your <b>{genre}</b> trait
 				</Card.Description>
 			</Card.Content>
 		</Card>
