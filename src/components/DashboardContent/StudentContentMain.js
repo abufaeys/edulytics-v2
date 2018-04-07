@@ -3,12 +3,15 @@ import { Grid, Statistic, Card, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import './style.css';
 import ProgressChartMain from './StudentVisuals/ProgressChart/ProgressChartMain';
 import StudentAverageTime from './StudentVisuals/AverageTime';
 import StudentLevelsCompleted from './StudentVisuals/LevelsCompleted';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 import SkillsRadarChartMain from './StudentVisuals/SkillsRadarChart/SkillsRadarChartMain';
 import ProfileCard from './StudentVisuals/ProfileCard';
+import RecommendationList from './StudentVisuals/Recommendations/RecommendationList';
+
 
 /*
   This is the main template for each of the dashboard we will do.
@@ -57,6 +60,12 @@ class StudentContentMain extends Component {
               <Loader active inline='centered'/>
             }
           </Card>
+          <Grid.Column style={{overflow:"scroll",height:'500px',}}>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <RecommendationList chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }            
+          </Grid.Column>
           <Card>
           </Card>
 
