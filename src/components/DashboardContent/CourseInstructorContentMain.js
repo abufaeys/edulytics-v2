@@ -9,6 +9,7 @@ import TotalStudents from './CourseInstructorVisuals/TotalStudents';
 import Leaderboard from './CourseInstructorVisuals/Leaderboard'
 import AverageLevelsCompleted from './CourseInstructorVisuals/AverageLevelsCompleted';
 import AverageTimePerLevel from './CourseInstructorVisuals/AverageTimePerLevel';
+import SubmissionByHour from './CourseInstructorVisuals/SubmissionByHour';
 import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTracker';
 /*
   This is the main template for each of the dashboard we will do.
@@ -61,6 +62,14 @@ class CourseInstructorContentMain extends Component {
               }
             </Card>
           </Grid.Column>
+        </Grid>
+        <Grid>
+          <Card fluid>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <SubmissionByHour chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} /> :
+              <Loader active inline='centered'/>
+            }
+          </Card>
         </Grid>
       </div>
       )

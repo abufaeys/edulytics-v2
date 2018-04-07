@@ -21,7 +21,7 @@ class Leaderboard extends Component{
 		return (
 			<Statistic.Group horizontal>
 				{studentRankList.slice(0,10).map((student, index) =>{
-                    return <Statistic size="tiny" style={{padding:"0"}}>
+                    return <Statistic size="mini" style={{padding:"0"}}>
 						      <Statistic.Value>{student.rank}</Statistic.Value>
 						      <Statistic.Label onClick={() => {this.props.goToDashboard("Student", student.id, "")}} style={{cursor:"pointer"}}>{student.name}</Statistic.Label>
 						    </Statistic>;
