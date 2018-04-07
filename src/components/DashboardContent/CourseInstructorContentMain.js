@@ -9,6 +9,7 @@ import AverageLevelsCompleted from './CourseInstructorVisuals/AverageLevelsCompl
 import AverageTimePerLevel from './CourseInstructorVisuals/AverageTimePerLevel';
 import SubmissionByHour from './CourseInstructorVisuals/SubmissionByHour';
 import AverageSubmissionHoursContainer from './CourseInstructorVisuals/AverageSubmissionHours/AverageSubmissionHoursContainer';
+import VideosWatched from './CourseInstructorVisuals/VideosWatched';
 /*
   This is the main template for each of the dashboard we will do.
   This file is only to be changed if:
@@ -21,27 +22,32 @@ class CourseInstructorContentMain extends Component {
   render(){
     return (
       <div style={{"backgroundColor": "#F2F2F2", "padding": "3em"}}>
-      {this.props.courseId !== undefined && this.props.fetchStaticDatabaseStatus === "FETCHED" ?
-        <h1>{this.props.staticDatabase.CourseList[this.props.courseId]["name"]}</h1> :
-        <Loader active inline='centered'/>
-      }
-      
         <Grid columns={3} doubling as={Card.Group} >
-          <Card>  
-            <Statistic label='Elo Rating' value='5,550' />
-          </Card>
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <TotalStudents staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId}/> :
+          <Grid.Column width={8}>
+            <Card fluid>  
+            {this.props.courseId !== undefined && this.props.fetchStaticDatabaseStatus === "FETCHED" ?
+              <Statistic label={this.props.staticDatabase.CourseList[this.props.courseId]["instructorName"]} 
+              value={this.props.staticDatabase.CourseList[this.props.courseId]["name"]} />:
               <Loader active inline='centered'/>
             }
-          </Card>
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <AverageLevelsCompleted staticDatabase={this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId = {this.props.userId} courseId={this.props.courseId}/> :
-              <Loader active inline='centered'/>
-            }
-          </Card>           
+            </Card>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Card fluid>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <TotalStudents staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId}/> :
+                <Loader active inline='centered'/>
+              }
+            </Card>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Card fluid>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <AverageLevelsCompleted staticDatabase={this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId = {this.props.userId} courseId={this.props.courseId}/> :
+                <Loader active inline='centered'/>
+              }
+            </Card>
+          </Grid.Column>       
         </Grid>
         <Grid columns={2} doubling stackable as={Card.Group}>
           <Grid.Row>
@@ -79,6 +85,26 @@ class CourseInstructorContentMain extends Component {
               </Card>
             </Grid.Column>
           </Grid.Row>
+        </Grid>
+        <Grid columns={2} as={Card.Group}>
+          <Card fluid>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <div>
+              <Header as="h1" textAlign="center">Watch Completion Per Video Assignment</Header>
+              <VideosWatched chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} />
+              </div> :
+              <Loader active inline='centered'/>
+            }
+          </Card>
+          <Card fluid>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <div>
+              <Header as="h1" textAlign="center">Average Submission Times By Hour</Header>
+              <SubmissionByHour chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} />
+              </div> :
+              <Loader active inline='centered'/>
+            }
+          </Card>
         </Grid>
         <Grid columns={1} as={Card.Group}>
           <Card fluid>

@@ -17,6 +17,7 @@ const AverageSubmissionHours = (props) => {
 		var submissionTimeCount = {"hour":hour, "count":assignments["hourCount"][hour]};
 		data.push(submissionTimeCount);
 	}
+	
 	return (
 		<ResponsiveContainer width="100%" height={300}>
 	  	<LineChart data={data}
@@ -25,7 +26,7 @@ const AverageSubmissionHours = (props) => {
 	     <YAxis/>
 	     <Tooltip/>
 	     <Legend/>
-	     <Line type="monotone" dataKey="count" name="Count" stroke="#8884d8" activeDot={{r: 8}}/>}
+	     <Line type="monotone" dataKey="count" name="Count" stroke="#8884d8" activeDot={{r: 8}} />
 	    </LineChart>
 	  </ResponsiveContainer>
   );
