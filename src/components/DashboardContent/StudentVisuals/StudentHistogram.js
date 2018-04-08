@@ -6,52 +6,96 @@ import {
 	YAxis, 
 	CartesianGrid, 
 	Tooltip, 
-	Legend
+	Legend,
+	ReferenceLine,
 } from 'recharts';
 import {
-	Loader
+	Header
 } from 'semantic-ui-react';
+import { getEloRating } from '../../../constants/helpers.js';
 
-const formatData = (averagePlayTime) => {
-	let BUCKETS = 20;
-	let data = [];
-	let finalData = [];
-	for (let userId in averagePlayTime) {
-		data.push(averagePlayTime[userId]);
-	}
-	data.sort();
-	let LOWEST = Math.floor(Math.min(...data)/100)*100;
-	let HIGHEST = Math.ceil(Math.max(...data)/100)*100;
-	let INTERVAL = (HIGHEST-LOWEST)/BUCKETS
+const formatData = (chartsDatabase, staticDatabase, userId) => {
+	let courses = staticDatabase.CourseStudents;
+	let studentIds;
+	let eloList = [];
+	let userElo = 0;
 
-	for (let i=0;i<BUCKETS;i++) {
-		finalData.push({x: i*INTERVAL, y: 0})
+	// Find current course of student
+	for (let key in courses) {
+		// console.log(courses[key])
+		if (courses[key].includes(userId)) {
+			// Get all the students in the course
+			studentIds = courses[key];
+			break;
+		}
 	}
-	// console.log(finalData);
-	data.forEach(ele => {
-		let bucket = Math.floor(ele/INTERVAL);
-		finalData[bucket].y += 1;
+
+
+	// Populate eloList with elo ratings of all students in the course
+	studentIds.forEach(studentId => {
+		let attributes = [];
+		attributes.push(chartsDatabase.Student.studentlevelStatus.data[studentId] * 100);
+		attributes.push(chartsDatabase.Student.assignmentCompletedness.data[studentId] * 100);
+		attributes.push(chartsDatabase.Student.relativeAvgtime.data[studentId]["self"] * 100);
+		attributes.push(chartsDatabase.Student.studentProactiveness.data[studentId] * 100);
+		attributes.push(chartsDatabase.Student.normalizedTotalplaytime.data[studentId]["self"] * 100);
+		attributes.push(chartsDatabase.Student.dilligence.data[studentId]);
+
+
+		eloList.push(getEloRating(attributes));
+
+		if (studentId === userId) {
+			userElo = getEloRating(attributes);
+		}
 	})
 
-	return finalData;
-}
+	// 
+	eloList.sort();
+	let BUCKETS = 20;
+	let LOWEST = Math.min(...eloList);
+	let HIGHEST = Math.max(...eloList);
+	let INTERVAL = (HIGHEST-LOWEST)/BUCKETS;
+	let finalData = [];
+	let eloSum = 0;
+	
+	for (let i=0;i<=BUCKETS;i++) {
+		finalData.push({x: Math.floor(i*INTERVAL+LOWEST), y: 0,})
+	}	
 
-const StudentHistogram = ({chartsDatabase}) => {
-	if (Object.getOwnPropertyNames(chartsDatabase).length === 0) {
-		return(<div><Loader active inline='centered'/></div>);
-	}
-	let data = formatData(chartsDatabase.Student.averagePlaytime.data);
+	eloList.forEach(ele => {
+		let bucket = Math.floor((ele-LOWEST)/INTERVAL);
+		// console.log(bucket);
+		finalData[bucket].y += 1;
+		eloSum += ele;
+	})	
+
+	let mean = Math.floor(eloSum/eloList.length);
+	let meanBucketRef = finalData[Math.floor((mean-LOWEST)/INTERVAL)]['x'];
+
+	let userEloBucketRef = finalData[Math.floor((userElo-LOWEST)/INTERVAL)]['x'];
+
+
+	return {finalData, userEloBucketRef, meanBucketRef};
+}	
+
+const StudentHistogram = ({chartsDatabase, staticDatabase, userId}) => {
+	let data = formatData(chartsDatabase, staticDatabase, userId);
 	return ( 
 		<div>
-    	<AreaChart width={500} height={300} data={data}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="x"/>
-       <YAxis/>
-       <CartesianGrid strokeDasharray="3 3"/>
-       <Tooltip/>
-       <Legend />
-       <Area type='monotone' dataKey="y" fill="#8884d8" />
-      </AreaChart>
+			<Header as='h1' textAlign="center">Elo Distribution</Header>
+			<div align="center">
+	    	<AreaChart width={500} height={300} data={data.finalData}
+	            margin={{top: 20, right: 30, left: 0,}}>
+	       <XAxis dataKey="x"/>
+	       <YAxis/>
+	       <CartesianGrid strokeDasharray="3 3"/>
+	       <Tooltip/>
+	       <Legend />
+	       <Area type='monotone' dataKey="y" fill="#8884d8" name="Occurences" />
+	       <ReferenceLine x={data.meanBucketRef} label="Average" stroke="red" strokeDasharray="3 3" />
+	       <ReferenceLine x={data.userEloBucketRef} label={{position: 'top',offset: -50, value: "Your Elo"}} stroke="green" strokeDasharray="3 3" />
+	      </AreaChart>
+      </div>
 		</div>
 	)
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import moment from 'moment';
+// import moment from 'moment';
 import AssignmentRow from "./AssignmentRow";
 
 
@@ -14,11 +14,11 @@ const getAssignments = (chartsDatabase, userId) => {
 	for (let course in data) {
 		for (let assignment in data[course]) {
 			if (data[course][assignment] !== false) {
-				let date = new moment(data[course][assignment]["deadline"]);
-				let now = new moment();
-				if (date > now) {
+				// let date = new moment(data[course][assignment]["deadline"]);
+				// let now = new moment();
+				// if (date > now) {
 					assignments.push(data[course][assignment]);
-				}
+				// }
 			}
 		}
 	}

@@ -11,14 +11,14 @@ import {
 
 
 
-const PentagonChart = ({levelStatus, completedness, relativeAvgtime, proactiveness, effort, studentName}) => {
+const PentagonChart = ({levelStatus, completedness, relativeAvgtime, proactiveness, effort, diligence, studentName}) => {
 	const data = [
 	    { subject: 'Hardworking', A: Math.round(levelStatus*100)},
 	    { subject: 'Dedication', A: Math.round(completedness*100)},
 	    { subject: 'Mastery', A: 100-Math.round(relativeAvgtime["self"]*100)},
 	    { subject: 'Proactive', A: Math.round(proactiveness*100)},
 	    { subject: 'Effort', A: Math.round(effort.self*100)},
-	    { subject: 'Diligence', A: 65},
+	    { subject: 'Diligence', A: Math.round(diligence*100)},
 	];	
 
 	return (

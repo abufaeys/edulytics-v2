@@ -11,6 +11,8 @@ import AssignmentTracker from './StudentVisuals/AssignmentTracker/AssignmentTrac
 import SkillsRadarChartMain from './StudentVisuals/SkillsRadarChart/SkillsRadarChartMain';
 import ProfileCard from './StudentVisuals/ProfileCard';
 import RecommendationList from './StudentVisuals/Recommendations/RecommendationList';
+import EloRating from './StudentVisuals/EloRating';
+import StudentHistogram from "./StudentVisuals/StudentHistogram";
 
 
 /*
@@ -37,7 +39,10 @@ class StudentContentMain extends Component {
             <Loader active inline='centered'/>
           }          
           <Card>  
-            <Statistic label='Elo Rating' value='5,550' />
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <EloRating chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }
           </Card>      
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
@@ -60,13 +65,17 @@ class StudentContentMain extends Component {
               <Loader active inline='centered'/>
             }
           </Card>
-          <Grid.Column style={{overflow:"scroll",height:'600px',}}>
+          <Grid.Column style={{overflow:"scroll",height:'550px',}}>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
               <RecommendationList chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
               <Loader active inline='centered'/>
             }            
           </Grid.Column>
           <Card>
+            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+              <StudentHistogram chartsDatabase={this.props.chartsDatabase} staticDatabase={this.props.staticDatabase} userId={this.props.userId} /> :
+              <Loader active inline='centered'/>
+            }  
           </Card>
 
         </Grid>
