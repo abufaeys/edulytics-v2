@@ -60,7 +60,7 @@ class StudentContentMain extends Component {
         <Grid columns={3} doubling as={Card.Group} >
           <Card>
             {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} 
+              <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} staticDatabase={this.props.staticDatabase} userId={this.props.userId} 
                 userName={this.props.userNames[this.props.userId].name}/> :
               <Loader active inline='centered'/>
             }

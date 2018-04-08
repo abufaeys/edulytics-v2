@@ -24,7 +24,7 @@ import {
 
 class Home extends Component {
   state = {
-    crosshairValues: []
+    crosshairValues: [] 
   };
 
   DATA = [
