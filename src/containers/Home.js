@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button, Header } from 'semantic-ui-react';
+import { Container, Grid, Button, Header, Icon } from 'semantic-ui-react';
 import {
   AreaSeries,
   Crosshair,
@@ -23,53 +23,40 @@ import {
 
 
 class Home extends Component {
-  state = {
-    crosshairValues: [] 
-  };
-
-  DATA = [
-    [
-      {x: 1, y: 10},
-      {x: 2, y: 10},
-      {x: 3, y: 13},
-      {x: 4, y: 7},
-    ]
-  ];
-  onMouseLeave = () => this.setState({crosshairValues: []});
-
-  onNearestX = (value, {index}) => {
-    this.setState({crosshairValues: [this.DATA[0][index]]});
-  }
 
 	render() {
 
 	  return (
-	  	<div align="center">
-      <XYPlot
-        width={300}
-        height={300}
-        onMouseLeave={this.onMouseLeave}>
-        <XAxis/>
-        <YAxis/>
-        <HorizontalGridLines />
-        <VerticalGridLines />
-        <AreaSeries getNull={(d) => d.y !== null} onNearestX={this.onNearestX} data={this.DATA[0]} />
-        <LineMarkSeries getNull={(d) => d.y !== null} data={this.DATA[1]} />
-        <Crosshair values={this.state.crosshairValues} />
-      </XYPlot>
-	  <p>
-      <Button onClick={this.props.increment} disabled={this.props.isIncrementing}>Increment</Button>
-      <Button onClick={this.props.incrementAsync} disabled={this.props.isIncrementing}>Increment Async</Button>
-    </p>
-
-    <p>
-      <Button onClick={this.props.decrement} disabled={this.props.isDecrementing}>Decrementing</Button>
-      <Button onClick={this.props.decrementAsync} disabled={this.props.isDecrementing}>Decrement Async</Button>
-    </p>
-
-    <p><Button onClick={this.props.getQuote} disabled={this.props.isFetchingQuote}>Get QOTD</Button></p>
-    <Header as='h3'>Quote of the day: {this.props.quote}</Header>
-		  </div>
+        <Container text>
+          <Header
+            as='h1'
+            content="Edulytics"
+            style={{
+              fontSize: "4em",
+              fontWeight: 'normal',
+              marginBottom: 0,
+              marginTop: '3em',
+            }}
+          />
+          <Header
+            as='h2'
+            content='Knowledge is power.'
+            style={{
+              fontSize: '1.7em',
+              fontWeight: 'normal',
+              marginTop: '1.5em',
+              color:"grey",
+            }}
+          />
+          <Button primary size='huge' onClick={this.props.changeToStudentPage}>
+            Student Log In
+            <Icon name='right arrow' />
+          </Button>
+          <Button primary size='huge' onClick={this.props.changeToCourseInstructorPage}>
+            Course Instructor Log In
+            <Icon name='right arrow' />
+          </Button>
+        </Container>
 	  )
 	}
 }
@@ -89,7 +76,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   decrement,
   decrementAsync,
   getQuote,
-  changePage: () => push('/about-us')
+  changeToStudentPage: () => push('/Student/reSGNVLjpJfuiZZMdMtCudWM9Xv1'),
+  changeToCourseInstructorPage: () => push('/CourseInstructor/R6nSbDVly8PUnC6jQFcseDS9sgJ3/-L5cmwU2yj2HRmfDvIUP'),
 }, dispatch)
 
 export default connect(

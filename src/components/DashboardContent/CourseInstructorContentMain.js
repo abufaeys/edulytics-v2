@@ -151,8 +151,8 @@ class CourseInstructorContentMain extends Component {
               }
             </Card>
           </Grid.Column>
-          <Grid.Column width={8}>
-            <Card fluid stretched>
+          <Grid.Column width={8} stretched>
+            <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
                 <VideoWatchLengthDistributionContainer chartsDatabase={this.props.chartsDatabase} 
                 initialVideoId={Object.keys(this.props.chartsDatabase.CourseInstructor.videoPlayTime["data"][this.props.courseId])[0]} courseId={this.props.courseId} /> :
