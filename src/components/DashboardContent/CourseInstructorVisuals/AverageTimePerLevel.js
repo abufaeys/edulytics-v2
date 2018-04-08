@@ -14,7 +14,7 @@ const AverageTimePerLevel = (props) => {
 	let courseTimings = props.chartsDatabase.CourseInstructor.averageLevel.data[props.courseId];
 	var data = [];
 	for (var levelName in courseTimings){
-		var level = {levelName: levelName, averageTime:Math.round(courseTimings[levelName] * 100) / 100};
+		var level = {levelName: levelName, averageTime:Math.round(courseTimings[levelName]["averagePlayTime"] * 100) / 100};
 		data.push(level);
 	}
 	const compareTo = (a, b) => {
@@ -30,7 +30,7 @@ const AverageTimePerLevel = (props) => {
 	}
 	data.sort(compareTo);
 	return (
-		<ResponsiveContainer width="100%" height={400}>
+		<ResponsiveContainer width="100%" height={350}>
 	  	<AreaChart width={730} height={250} data={data}
 		  margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
 		  <defs>

@@ -4,18 +4,18 @@ import { ResponsiveContainer } from 'recharts';
 import { XYPlot, XAxis, YAxis, HeatmapSeries } from 'react-vis';
 
 
-class SubmissionByHour extends Component{
+class SubmissionDistribution extends Component{
 	render(){
 		var data = [];
-		var assignments = this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId];
+		var assignments = this.props.chartsDatabase.CourseInstructor.assignmentDis["data"][this.props.courseId];
 		var assignmentNames = [];
-		for (var assignment in assignments){
+		/*for (var assignment in assignments){
 			assignmentNames.push(assignments[assignment]["assignmentName"]);
-		}
+		}*/
 		var counter = 1;
 		for (var assignmentId in assignments){
-			for (var binNo in assignments[assignmentId]["hourCount"]){
-				data.push({x:parseInt(binNo) + 1, y: -counter, color: assignments[assignmentId]["hourCount"][binNo]})
+			for (var binNo in assignments[assignmentId]){
+				data.push({x:parseInt(binNo), y: -counter, color: assignments[assignmentId][binNo]})
 			}
 			counter += 1;
 		}
@@ -38,4 +38,4 @@ class SubmissionByHour extends Component{
 }
 
 
-export default SubmissionByHour
+export default SubmissionDistribution

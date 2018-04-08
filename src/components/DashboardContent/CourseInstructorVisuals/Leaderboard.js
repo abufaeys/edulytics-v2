@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Statistic } from 'semantic-ui-react';
+import { Statistic, Divider } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
