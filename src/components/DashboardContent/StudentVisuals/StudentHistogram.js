@@ -58,7 +58,6 @@ const formatData = (chartsDatabase, staticDatabase, userId) => {
 			attributes.push(chartsDatabase.Student.dilligence.data[studentId]):
 			attributes.push(0 * 100);
 
-		console.log(attributes, studentId)
 		eloList.push(getEloRating(attributes));
 
 		if (studentId === userId) {
@@ -81,7 +80,6 @@ const formatData = (chartsDatabase, staticDatabase, userId) => {
 
 	eloList.forEach(ele => {
 		let bucket = Math.floor((ele-LOWEST)/INTERVAL);
-		// console.log(bucket);
 		finalData[bucket].y += 1;
 		eloSum += ele;
 	})	
