@@ -34,14 +34,31 @@ const formatData = (chartsDatabase, staticDatabase, userId) => {
 	// Populate eloList with elo ratings of all students in the course
 	studentIds.forEach(studentId => {
 		let attributes = [];
-		attributes.push(chartsDatabase.Student.studentlevelStatus.data[studentId] * 100);
-		attributes.push(chartsDatabase.Student.assignmentCompletedness.data[studentId] * 100);
-		attributes.push(chartsDatabase.Student.relativeAvgtime.data[studentId]["self"] * 100);
-		attributes.push(chartsDatabase.Student.studentProactiveness.data[studentId] * 100);
-		attributes.push(chartsDatabase.Student.normalizedTotalplaytime.data[studentId]["self"] * 100);
-		attributes.push(chartsDatabase.Student.dilligence.data[studentId]);
+		chartsDatabase.Student.studentlevelStatus.data[studentId] ?
+			attributes.push(chartsDatabase.Student.studentlevelStatus.data[studentId] * 100):
+			attributes.push(0 * 100)
 
+		chartsDatabase.Student.assignmentCompletedness.data[studentId] ?
+			attributes.push(chartsDatabase.Student.assignmentCompletedness.data[studentId] * 100):
+			attributes.push(0 * 100);
 
+		chartsDatabase.Student.relativeAvgtime.data[studentId] ? 
+			attributes.push(chartsDatabase.Student.relativeAvgtime.data[studentId]["self"] * 100) :
+			attributes.push(0 * 100);
+
+		chartsDatabase.Student.studentProactiveness.data[studentId] ?
+			attributes.push(chartsDatabase.Student.studentProactiveness.data[studentId] * 100):
+			attributes.push(0 * 100);
+
+		chartsDatabase.Student.normalizedTotalplaytime.data[studentId] ?
+			chartsDatabase.Student.normalizedTotalplaytime.data[studentId]["self"] * 100 :
+			attributes.push(0 * 100);
+
+		chartsDatabase.Student.dilligence.data[studentId] ?
+			attributes.push(chartsDatabase.Student.dilligence.data[studentId]):
+			attributes.push(0 * 100);
+
+		console.log(attributes, studentId)
 		eloList.push(getEloRating(attributes));
 
 		if (studentId === userId) {

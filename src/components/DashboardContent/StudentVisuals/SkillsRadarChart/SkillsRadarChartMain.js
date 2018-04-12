@@ -17,14 +17,32 @@ const formatData = (chartsDatabase, staticDatabase, userId) => {
 		}
 	}
 
+	let levelStatus = chartsDatabase.Student.studentlevelStatus.data[userId] ?
+		chartsDatabase.Student.studentlevelStatus.data[userId] : 0
+
+	let completedness = chartsDatabase.Student.assignmentCompletedness.data[userId] ?
+		chartsDatabase.Student.assignmentCompletedness.data[userId] : 0
+
+	let relativeAvgtime = chartsDatabase.Student.relativeAvgtime.data[userId] ?
+		chartsDatabase.Student.relativeAvgtime.data[userId] : 0
+
+	let proactiveness = chartsDatabase.Student.studentProactiveness.data[userId] ?
+		chartsDatabase.Student.studentProactiveness.data[userId] : 0
+
+	let effort = chartsDatabase.Student.normalizedTotalplaytime.data[userId] ? 
+		chartsDatabase.Student.normalizedTotalplaytime.data[userId] : 0
+
+	let diligence = chartsDatabase.Student.dilligence.data[userId] ?
+		chartsDatabase.Student.dilligence.data[userId] : 0	
+
 	// Populate attributes with sum of all students in the course
 	studentIds.forEach(studentId => {
-		attributes[0] += (chartsDatabase.Student.studentlevelStatus.data[studentId] * 100);
-		attributes[1] += (chartsDatabase.Student.assignmentCompletedness.data[studentId] * 100);
-		attributes[2] += (chartsDatabase.Student.relativeAvgtime.data[studentId]["self"] * 100);
-		attributes[3] += (chartsDatabase.Student.studentProactiveness.data[studentId] * 100);
-		attributes[4] += (chartsDatabase.Student.normalizedTotalplaytime.data[studentId]["self"] * 100);
-		attributes[5] += (chartsDatabase.Student.dilligence.data[studentId]);
+		attributes[0] += levelStatus * 100;
+		attributes[1] += completedness * 100;
+		attributes[2] += relativeAvgtime["self"] * 100;
+		attributes[3] += proactiveness * 100;
+		attributes[4] += effort["self"] * 100;
+		attributes[5] += diligence;
 	})
 
 	for (let i=0;i<attributes.length;i++) {
@@ -37,16 +55,34 @@ const formatData = (chartsDatabase, staticDatabase, userId) => {
 export default class SkillsRadarChartMain extends Component {
 
 	render() {
+		let levelStatus = this.props.chartsDatabase.Student.studentlevelStatus.data[this.props.userId] ?
+			this.props.chartsDatabase.Student.studentlevelStatus.data[this.props.userId] : 0
+
+		let completedness = this.props.chartsDatabase.Student.assignmentCompletedness.data[this.props.userId] ?
+			this.props.chartsDatabase.Student.assignmentCompletedness.data[this.props.userId] : 0
+
+		let relativeAvgtime = this.props.chartsDatabase.Student.relativeAvgtime.data[this.props.userId] ?
+			this.props.chartsDatabase.Student.relativeAvgtime.data[this.props.userId] : 0
+
+		let proactiveness = this.props.chartsDatabase.Student.studentProactiveness.data[this.props.userId] ?
+			this.props.chartsDatabase.Student.studentProactiveness.data[this.props.userId] : 0
+
+		let effort = this.props.chartsDatabase.Student.normalizedTotalplaytime.data[this.props.userId] ? 
+			this.props.chartsDatabase.Student.normalizedTotalplaytime.data[this.props.userId] : 0
+
+		let diligence = this.props.chartsDatabase.Student.dilligence.data[this.props.userId] ?
+			this.props.chartsDatabase.Student.dilligence.data[this.props.userId] : 0
+
 		return (
 			<div style={{width:"100%",height:"100%"}}>
 				<Header as="h1" textAlign="center">Performance Chart</Header>
 				<PentagonChart 
-					levelStatus={this.props.chartsDatabase.Student.studentlevelStatus.data[this.props.userId]}
-					completedness={this.props.chartsDatabase.Student.assignmentCompletedness.data[this.props.userId]}
-					relativeAvgtime={this.props.chartsDatabase.Student.relativeAvgtime.data[this.props.userId]}
-					proactiveness={this.props.chartsDatabase.Student.studentProactiveness.data[this.props.userId]}
-					effort={this.props.chartsDatabase.Student.normalizedTotalplaytime.data[this.props.userId]}
-					diligence={this.props.chartsDatabase.Student.dilligence.data[this.props.userId]}
+					levelStatus={levelStatus}
+					completedness={completedness}
+					relativeAvgtime={relativeAvgtime}
+					proactiveness={proactiveness}
+					effort={effort}
+					diligence={diligence}
 					average={formatData(this.props.chartsDatabase, this.props.staticDatabase, this.props.userId)}
 					studentName={this.props.userName}
 				/>
