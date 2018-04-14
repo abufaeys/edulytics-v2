@@ -8,6 +8,7 @@ import {
 	ResponsiveContainer,
 	Tooltip
 } from 'recharts';
+import DataNotFound from '../DataNotFound';
 
 
 
@@ -58,28 +59,34 @@ class AverageMastery extends Component {
 	}
 
 	render(){
+		try{
+			var averages = this.getAverageMastery();
+			var data = [
+			    { subject: 'Hardworking', A: Math.round(averages.averageHardworking*100)},
+			    { subject: 'Dedication', A: Math.round(averages.averageDedication*100)},
+			    { subject: 'Mastery', A: 100-Math.round(averages.averageMastery*100)},
+			    { subject: 'Proactive', A: Math.round(averages.averageProactive*100)},
+			    { subject: 'Effort', A: Math.round(averages.averageEffort*100)},
+			    { subject: 'Diligence', A: Math.round(averages.averageEffort*100)},
+			];	
 
-		var averages = this.getAverageMastery();
-		var data = [
-		    { subject: 'Hardworking', A: Math.round(averages.averageHardworking*100)},
-		    { subject: 'Dedication', A: Math.round(averages.averageDedication*100)},
-		    { subject: 'Mastery', A: 100-Math.round(averages.averageMastery*100)},
-		    { subject: 'Proactive', A: Math.round(averages.averageProactive*100)},
-		    { subject: 'Effort', A: Math.round(averages.averageEffort*100)},
-		    { subject: 'Diligence', A: Math.round(averages.averageEffort*100)},
-		];	
-
-		return (
-			<ResponsiveContainer width="100%" height={400}>
-		  	<RadarChart outerRadius={150} data={data}>
-		      <Radar name="Average" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
-		      <PolarGrid />
-		      <Tooltip/>
-		      <PolarAngleAxis dataKey="subject" />
-		      <PolarRadiusAxis angle={60} domain={[0, 100]}/>
-		    </RadarChart>
-		  </ResponsiveContainer>
-	  );
+			return (
+				<ResponsiveContainer width="100%" height={400}>
+			  	<RadarChart outerRadius={150} data={data}>
+			      <Radar name="Average" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
+			      <PolarGrid />
+			      <Tooltip/>
+			      <PolarAngleAxis dataKey="subject" />
+			      <PolarRadiusAxis angle={60} domain={[0, 100]}/>
+			    </RadarChart>
+			  </ResponsiveContainer>
+		  );
+		}
+		catch(e){
+			return (
+				<DataNotFound />
+				);
+		}
 	}
 }
 

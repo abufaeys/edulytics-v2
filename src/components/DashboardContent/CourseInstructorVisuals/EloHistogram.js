@@ -14,6 +14,7 @@ import {
 	Header
 } from 'semantic-ui-react';
 import { getEloRating } from '../../../constants/helpers.js';
+import DataNotFound from '../DataNotFound';
 
 
 
@@ -65,20 +66,28 @@ class EloHistogram extends Component {
 		return {finalData, meanBucketRef};
 	}	
 	render(){
-		var data = this.formatData(this.props.chartsDatabase, this.props.staticDatabase);
-		return ( 
-			<ResponsiveContainer width="100%" height={400}>
-		    	<AreaChart width={500} height={400} data={data.finalData}
-		            margin={{top: 20, right: 30, left: 0,}}>
-		       <XAxis dataKey="x"/>
-		       <YAxis/>
-		       <CartesianGrid strokeDasharray="3 3"/>
-		       <Tooltip/>
-		       <Legend />
-		       <Area type='monotone' dataKey="y" fill="#8884d8" name="No. of Students" />
-		      </AreaChart>
-			</ResponsiveContainer>
-		)
+		try{
+			var data = this.formatData(this.props.chartsDatabase, this.props.staticDatabase);
+			return ( 
+				<ResponsiveContainer width="100%" height={400}>
+			    	<AreaChart width={500} height={400} data={data.finalData}
+			            margin={{top: 20, right: 30, left: 0,}}>
+			       <XAxis dataKey="x"/>
+			       <YAxis/>
+			       <CartesianGrid strokeDasharray="3 3"/>
+			       <Tooltip/>
+			       <Legend />
+			       <Area type='monotone' dataKey="y" fill="#8884d8" name="No. of Students" />
+			      </AreaChart>
+				</ResponsiveContainer>
+			)
+		}
+		catch(e){
+			return(
+				<DataNotFound />
+				);
+		}
+		
 	}
 }
 

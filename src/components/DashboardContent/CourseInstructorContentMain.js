@@ -14,6 +14,8 @@ import EloHistogram from './CourseInstructorVisuals/EloHistogram';
 import AverageElo from './CourseInstructorVisuals/AverageElo';
 import AverageMastery from './CourseInstructorVisuals/AverageMastery';
 import VideoWatchLengthDistributionContainer from './CourseInstructorVisuals/VideoWatchLengthDistribution/VideoWatchLengthDistributionContainer';
+
+import DataNotFound from './DataNotFound'
 /*
   This is the main template for each of the dashboard we will do.
   This file is only to be changed if:
@@ -44,7 +46,7 @@ class CourseInstructorContentMain extends Component {
               }
             </Card>
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} stretched>
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
                 <AverageElo staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId}/> :
@@ -122,7 +124,8 @@ class CourseInstructorContentMain extends Component {
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
                 <AverageSubmissionHoursContainer courseId={this.props.courseId}
-                initialAssignmentId={Object.keys(this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId])[0]}/> :
+                chartsDatabase = {this.props.chartsDatabase}
+                /> :
                 <Loader active inline='centered'/>
               }
             </Card>
@@ -155,7 +158,7 @@ class CourseInstructorContentMain extends Component {
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
                 <VideoWatchLengthDistributionContainer chartsDatabase={this.props.chartsDatabase} 
-                initialVideoId={Object.keys(this.props.chartsDatabase.CourseInstructor.videoPlayTime["data"][this.props.courseId])[0]} courseId={this.props.courseId} /> :
+                courseId={this.props.courseId} /> :
                 <Loader active inline='centered'/>
               }
             </Card>

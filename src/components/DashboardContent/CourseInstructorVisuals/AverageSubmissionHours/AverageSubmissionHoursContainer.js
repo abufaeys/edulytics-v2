@@ -4,11 +4,16 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import AverageSubmissionHours from './AverageSubmissionHours';
+import DataNotFound from '../../DataNotFound';
 
 class AverageSubmissionHoursContainer extends Component {
 
 	state = {
-		assignmentId:this.props.initialAssignmentId,
+		assignmentId:"",
+	}
+	componentDidMount(){
+		var initialAssignmentId = Object.keys(this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId])[0];
+		this.setState({assignmentId:initialAssignmentId});
 	}
 
 	handleDropdownChange = (event, data) =>{
@@ -16,26 +21,35 @@ class AverageSubmissionHoursContainer extends Component {
 	}
 
 	render() {
-		var assignments = this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId];
-		var assignmentOptions = [];
-		for (var assignmentId in assignments){
-			var option = {value:assignmentId, text:assignments[assignmentId]["assignmentName"]}
-			assignmentOptions.push(option);
+		try{
+			
+			var assignments = this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId];
+			var assignmentOptions = [];
+			for (var assignmentId in assignments){
+				var option = {value:assignmentId, text:assignments[assignmentId]["assignmentName"]}
+				assignmentOptions.push(option);
+			}
+			return (
+				<div style={{width:"100%",height:"100%"}}>
+					<Grid columns={2} style={{"padding": "1em"}}>
+					<Grid.Column width={10}>
+					<Header as="h1" textAlign="left">Average Assignment Submission Hours</Header>
+					</Grid.Column>
+					<Grid.Column width={6}>
+					<Dropdown placeholder={assignments[this.state.assignmentId]["assignmentName"]} 
+					search fluid button inline options={assignmentOptions} onChange={this.handleDropdownChange} style={{"align": "right"}} />
+					</Grid.Column>
+					</Grid>
+					<AverageSubmissionHours chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} assignmentId={this.state.assignmentId} />
+				</div>
+			)	
 		}
-		return (
-			<div style={{width:"100%",height:"100%"}}>
-				<Grid columns={2} style={{"padding": "1em"}}>
-				<Grid.Column width={10}>
-				<Header as="h1" textAlign="left">Average Assignment Submission Hours</Header>
-				</Grid.Column>
-				<Grid.Column width={6}>
-				<Dropdown placeholder={assignments[this.state.assignmentId]["assignmentName"]} 
-				search fluid button inline options={assignmentOptions} onChange={this.handleDropdownChange} style={{"align": "right"}} />
-				</Grid.Column>
-				</Grid>
-				<AverageSubmissionHours chartsDatabase={this.props.chartsDatabase} courseId={this.props.courseId} assignmentId={this.state.assignmentId} />
-			</div>
-		)		
+		catch(e){
+			return(
+				<DataNotFound />
+				);
+		}
+	
 	}
 }
 
