@@ -11,6 +11,7 @@ import NavBar from "./NavBar";
 // Container components for routing are imported here
 import Home from './Home';
 import DashboardContainer from './DashboardContainer';
+import InvalidRoute from './InvalidRoute';
 
 class App extends Component {
 
@@ -37,7 +38,7 @@ class App extends Component {
               <Route exact path="/CohortAdministrator/:uid" render={(props) => (<DashboardContainer userType = "CohortAdministrator" userId = {props.match.params.uid}/>)} />
               <Route exact path="/SystemAdministrator/:uid" render={(props) => (<DashboardContainer userType = "SystemAdministrator" userId = {props.match.params.uid}/>)} />
 
-              <Route path="*" render={(props) => (<h1>Not Found</h1>)} />
+              <Route path="*" render={(props) => (<InvalidRoute />)} />
             </Switch>
           </main>
       </div>

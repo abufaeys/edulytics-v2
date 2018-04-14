@@ -14,6 +14,8 @@ import RecommendationList from './StudentVisuals/Recommendations/RecommendationL
 import EloRating from './StudentVisuals/EloRating';
 import StudentHistogram from "./StudentVisuals/StudentHistogram";
 
+import InvalidRoute from '../../containers/InvalidRoute';
+
 
 /*
   This is the main template for each of the dashboard we will do.
@@ -26,76 +28,83 @@ import StudentHistogram from "./StudentVisuals/StudentHistogram";
 class StudentContentMain extends Component {
 
   render(){
+    try{
+      return (
+        <div style={{"backgroundColor": "#F2F2F2", "padding":"3em"}}>
 
-    return (
-      <div style={{"backgroundColor": "#F2F2F2", "padding":"3em"}}>
+          <Grid columns={4} doubling as={Card.Group} >
+            {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
+              <ProfileCard
+                name={this.props.userNames[this.props.userId].name}
+                photoUrl={this.props.userNames[this.props.userId].photoURL}
+              /> :
+              <Loader active inline='centered'/>
+            }          
+            <Card>  
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <EloRating chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+                <Loader active inline='centered'/>
+              }
+            </Card>      
+            <Card>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <StudentAverageTime chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+                <Loader active inline='centered'/>
+              }
+            </Card>   
+            <Card>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <StudentLevelsCompleted chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+                <Loader active inline='centered'/>
+              }
+            </Card>           
+          </Grid>
+          <Grid columns={3} doubling as={Card.Group} >
+            <Card>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} staticDatabase={this.props.staticDatabase} userId={this.props.userId} 
+                  userName={this.props.userNames[this.props.userId].name}/> :
+                <Loader active inline='centered'/>
+              }
+            </Card>
+            <Grid.Column style={{overflow:"scroll",height:'550px',}}>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <RecommendationList chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+                <Loader active inline='centered'/>
+              }            
+            </Grid.Column>
+            <Card>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <StudentHistogram chartsDatabase={this.props.chartsDatabase} staticDatabase={this.props.staticDatabase} userId={this.props.userId} /> :
+                <Loader active inline='centered'/>
+              }  
+            </Card>
 
-        <Grid columns={4} doubling as={Card.Group} >
-          {this.props.fetchStaticDatabaseStatus === "FETCHED" ?
-            <ProfileCard
-              name={this.props.userNames[this.props.userId].name}
-              photoUrl={this.props.userNames[this.props.userId].photoURL}
-            /> :
-            <Loader active inline='centered'/>
-          }          
-          <Card>  
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <EloRating chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>      
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <StudentAverageTime chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>   
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <StudentLevelsCompleted chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>           
-        </Grid>
-        <Grid columns={3} doubling as={Card.Group} >
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <SkillsRadarChartMain chartsDatabase={this.props.chartsDatabase} staticDatabase={this.props.staticDatabase} userId={this.props.userId} 
-                userName={this.props.userNames[this.props.userId].name}/> :
-              <Loader active inline='centered'/>
-            }
-          </Card>
-          <Grid.Column style={{overflow:"scroll",height:'550px',}}>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <RecommendationList chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }            
-          </Grid.Column>
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <StudentHistogram chartsDatabase={this.props.chartsDatabase} staticDatabase={this.props.staticDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }  
-          </Card>
+          </Grid>
+          <Grid columns={2} doubling as={Card.Group} >
+            <Card>
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <ProgressChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId}/> :
+                <Loader active inline='centered'/>
+              }                
+            </Card>
+            <Card >
+              {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                <AssignmentTracker chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
+                <Loader active inline='centered'/>
+              }
+            </Card>
 
-        </Grid>
-        <Grid columns={2} doubling as={Card.Group} >
-          <Card>
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <ProgressChartMain chartsDatabase={this.props.chartsDatabase} userId={this.props.userId}/> :
-              <Loader active inline='centered'/>
-            }                
-          </Card>
-          <Card >
-            {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
-              <AssignmentTracker chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} /> :
-              <Loader active inline='centered'/>
-            }
-          </Card>
-
-        </Grid>
-      </div>
-      )
+          </Grid>
+        </div>
+        )
+    }
+    catch(e){
+      return (
+        <InvalidRoute />
+        );
+    }
+    
   }
 }
 
