@@ -9,7 +9,7 @@ class TotalStudents extends Component{
 	render(){
 	    var noStudents = this.props.chartsDatabase.CourseInstructor.totalStudents["data"][this.props.courseId];
 		return (
-			<Statistic label="Total Students" value={noStudents !== undefined ? noStudents : 0} />
+			<Statistic label="Total Students" value={noStudents !== undefined ? noStudents : "-"} />
 		)
 	}
 }

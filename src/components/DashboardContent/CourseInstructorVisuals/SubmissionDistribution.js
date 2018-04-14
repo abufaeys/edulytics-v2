@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import { ResponsiveContainer } from 'recharts';
 import { XYPlot, XAxis, YAxis, HeatmapSeries } from 'react-vis';
+import DataNotFound from '../DataNotFound';
 
 
 class SubmissionDistribution extends Component{
 	render(){
 		var data = [];
 		var assignments = this.props.chartsDatabase.CourseInstructor.assignmentDis["data"][this.props.courseId];
-		var assignmentNames = [];
 		/*for (var assignment in assignments){
 			assignmentNames.push(assignments[assignment]["assignmentName"]);
 		}*/
@@ -19,21 +19,29 @@ class SubmissionDistribution extends Component{
 			}
 			counter += 1;
 		}
-		return (
-			<ResponsiveContainer width="100%" height={600}>
-			
-		  		<XYPlot
-				  width={300}
-				  height={300}>
-				  <XAxis />
-				  <YAxis />
-				  <HeatmapSeries
-				    className="heatmap-series-example"
-				    colorRange={["white", "#82ca9d"]}
-				    data={data}/>
-				</XYPlot>
-				</ResponsiveContainer>
-			);
+		if (data.length >= 1){
+			return (
+				<ResponsiveContainer width="100%" height={600}>
+				
+			  		<XYPlot
+					  width={300}
+					  height={300}>
+					  <XAxis />
+					  <YAxis />
+					  <HeatmapSeries
+					    className="heatmap-series-example"
+					    colorRange={["white", "#82ca9d"]}
+					    data={data}/>
+					</XYPlot>
+					</ResponsiveContainer>
+				);
+		}
+		else{
+			return (
+				<DataNotFound />
+				);
+		}
+		
 	}
 }
 

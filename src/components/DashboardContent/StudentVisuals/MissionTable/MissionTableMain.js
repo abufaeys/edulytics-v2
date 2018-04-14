@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import _ from 'lodash';
 import MissionRow from './MissionTableRow';
 

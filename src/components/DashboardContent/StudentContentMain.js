@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Statistic, Card, Loader } from 'semantic-ui-react'
+import { Grid, Card, Loader } from 'semantic-ui-react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

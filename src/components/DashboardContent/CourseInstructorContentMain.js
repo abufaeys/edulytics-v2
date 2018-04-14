@@ -14,8 +14,6 @@ import EloHistogram from './CourseInstructorVisuals/EloHistogram';
 import AverageElo from './CourseInstructorVisuals/AverageElo';
 import AverageMastery from './CourseInstructorVisuals/AverageMastery';
 import VideoWatchLengthDistributionContainer from './CourseInstructorVisuals/VideoWatchLengthDistribution/VideoWatchLengthDistributionContainer';
-
-import DataNotFound from './DataNotFound'
 /*
   This is the main template for each of the dashboard we will do.
   This file is only to be changed if:
@@ -29,7 +27,7 @@ class CourseInstructorContentMain extends Component {
     return (
       <div style={{"backgroundColor": "#F2F2F2", "padding": "3em"}}>
         <Grid columns={3} doubling as={Card.Group} >
-          <Grid.Column width={7}>
+          <Grid.Column width={7} stretched>
             <Card fluid>  
             {this.props.courseId !== undefined && this.props.fetchStaticDatabaseStatus === "FETCHED" ?
               <Statistic label={this.props.staticDatabase.CourseList[this.props.courseId]["instructorName"]} 
@@ -38,7 +36,7 @@ class CourseInstructorContentMain extends Component {
             }
             </Card>
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} stretched>
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
                 <TotalStudents staticDatabase = {this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId={this.props.userId} courseId={this.props.courseId}/> :
@@ -54,7 +52,7 @@ class CourseInstructorContentMain extends Component {
               }
             </Card>
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} stretched>
             <Card fluid>
               {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
                 <AverageLevelsCompleted staticDatabase={this.props.staticDatabase} chartsDatabase={this.props.chartsDatabase} userId = {this.props.userId} courseId={this.props.courseId}/> :

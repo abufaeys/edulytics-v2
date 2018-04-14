@@ -2,24 +2,7 @@ import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Container, Grid, Button, Header, Icon } from 'semantic-ui-react';
-import {
-  AreaSeries,
-  Crosshair,
-  XYPlot,
-  XAxis,
-  YAxis,
-  HorizontalGridLines,
-  VerticalGridLines,
-  LineMarkSeries
-} from 'react-vis';
-import {
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync,
-  getQuote
-} from '../reducers/home'
+import { Container, Button, Header, Icon } from 'semantic-ui-react';
 
 
 class Home extends Component {
@@ -71,11 +54,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync,
-  getQuote,
   changeToStudentPage: () => push('/Student/reSGNVLjpJfuiZZMdMtCudWM9Xv1'),
   changeToCourseInstructorPage: () => push('/CourseInstructor/R6nSbDVly8PUnC6jQFcseDS9sgJ3/-L5cmwU2yj2HRmfDvIUP'),
 }, dispatch)

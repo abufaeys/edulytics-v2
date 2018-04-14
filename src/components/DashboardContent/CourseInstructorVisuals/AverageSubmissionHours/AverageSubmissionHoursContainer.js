@@ -12,8 +12,14 @@ class AverageSubmissionHoursContainer extends Component {
 		assignmentId:"",
 	}
 	componentDidMount(){
-		var initialAssignmentId = Object.keys(this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId])[0];
-		this.setState({assignmentId:initialAssignmentId});
+		try{
+			var initialAssignmentId = Object.keys(this.props.chartsDatabase.CourseInstructor.hoursAssignment["data"][this.props.courseId])[0];
+			this.setState({assignmentId:initialAssignmentId});
+		}
+		catch(e){
+
+		}
+		
 	}
 
 	handleDropdownChange = (event, data) =>{
@@ -46,7 +52,12 @@ class AverageSubmissionHoursContainer extends Component {
 		}
 		catch(e){
 			return(
-				<DataNotFound />
+				<div style={{width:"100%",height:"100%"}}>
+					<Grid style={{"padding": "1em"}}>
+					<Header as="h1" textAlign="left">Average Assignment Submission Hours</Header>
+					</Grid>
+					<DataNotFound />
+				</div>
 				);
 		}
 	

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Statistic } from 'semantic-ui-react';
 import { getEloRating } from '../../../constants/helpers.js';
-import DataNotFound from '../DataNotFound'
 
 /*
 	This is the display component for showing the total number of levels completed for a student.
@@ -63,7 +62,7 @@ class AverageElo extends Component{
 			}
 	    catch(e){
 	    	return (
-				<DataNotFound />
+				<Statistic label="Average Elo" value="-" />
 			)
 	    }
 		

@@ -9,7 +9,7 @@ class AverageLevelsCompleted extends Component{
 	render(){
 	    var averageLevelsValue = this.props.chartsDatabase.CourseInstructor.averageLevels["data"][this.props.courseId]
 		return (
-			<Statistic label="Average Levels Completed" value={averageLevelsValue !== undefined ? averageLevelsValue : 0} />
+			<Statistic label="Average Levels Completed" value={averageLevelsValue !== undefined ? averageLevelsValue : "-"} />
 		)
 	}
 }

@@ -8,6 +8,7 @@ import {
 	Tooltip, 
 	Legend,
 	ReferenceLine,
+	ResponsiveContainer
 } from 'recharts';
 import {
 	Header
@@ -98,7 +99,7 @@ const StudentHistogram = ({chartsDatabase, staticDatabase, userId}) => {
 	return ( 
 		<div>
 			<Header as='h1' textAlign="center">Elo Distribution</Header>
-			<div align="center">
+			<ResponsiveContainer width="100%" height={300}>
 	    	<AreaChart width={500} height={300} data={data.finalData}
 	            margin={{top: 20, right: 30, left: 0,}}>
 	       <XAxis dataKey="x"/>
@@ -110,7 +111,7 @@ const StudentHistogram = ({chartsDatabase, staticDatabase, userId}) => {
 	       <ReferenceLine x={data.meanBucketRef} label="Average" stroke="red" strokeDasharray="3 3" />
 	       <ReferenceLine x={data.userEloBucketRef} label={{position: 'top',offset: -50, value: "Your Elo"}} stroke="green" strokeDasharray="3 3" />
 	      </AreaChart>
-      </div>
+     	</ResponsiveContainer>
 		</div>
 	)
 }

@@ -7,12 +7,8 @@ import {
 	CartesianGrid, 
 	Tooltip, 
 	Legend,
-	ReferenceLine,
 	ResponsiveContainer
 } from 'recharts';
-import {
-	Header
-} from 'semantic-ui-react';
 import { getEloRating } from '../../../constants/helpers.js';
 import DataNotFound from '../DataNotFound';
 

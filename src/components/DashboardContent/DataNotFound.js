@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react'
+import { Header, Icon } from 'semantic-ui-react'
 /*
   This is the main template for each of the dashboard we will do.
   This file is only to be changed if:
@@ -9,11 +9,18 @@ import { Card } from 'semantic-ui-react'
 */
 
 class DataNotFound extends Component {
+  refresh(){
+    window.location.reload();
+  }
   render(){
     return (
-          <Card fluid stretched>
-            <h1 style={{"align":"center"}}>No Data Available</h1>
-          </Card>
+      <div align="center">
+        <Header as='h4' icon>
+          <Icon name='warning sign' />
+          Data Not Found<br/>
+          <a onClick={this.refresh}>(Click to Refresh)</a>
+        </Header>
+      </div>
       )
   }
   }

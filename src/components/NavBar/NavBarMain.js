@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Menu, Dropdown } from 'semantic-ui-react'
+import { Container, Menu } from 'semantic-ui-react'
 import UserDropdown from './UserDropdown'
 import UserSearch from './UserSearch'
 
@@ -20,12 +20,6 @@ class NavBarMain extends Component{
 				<Menu.Menu position='right'>
 					{this.props.currentActiveUser === "Student" ? <UserSearch style = {{display: "none"}} /> : <UserSearch />}
 				  	<UserDropdown currentActiveUser = {this.props.currentActiveUser} toggleActiveUser={this.props.toggleActiveUser} changePage={this.props.changeDashboardPage}/>
-				  	<Dropdown item icon="options">
-					  	<Dropdown.Menu>
-					    	<Dropdown.Item text="Settings" icon="setting" />
-					    	<Dropdown.Item text="Settings2" icon="settings" />
-					  	</Dropdown.Menu>
-				  	</Dropdown>
 				</Menu.Menu>
 		    </Container>
 		  </Menu>

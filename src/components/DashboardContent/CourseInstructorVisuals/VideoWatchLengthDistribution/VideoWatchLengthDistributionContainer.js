@@ -13,8 +13,14 @@ class VideoWatchLengthDistributionContainer extends Component {
 	}
 
 	componentDidMount(){
-		var initialVideoId = Object.keys(this.props.chartsDatabase.CourseInstructor.videoPlayTime["data"][this.props.courseId])[0];
-		this.setState({videoId:initialVideoId});
+		try{
+			var initialVideoId = Object.keys(this.props.chartsDatabase.CourseInstructor.videoPlayTime["data"][this.props.courseId])[0];
+			this.setState({videoId:initialVideoId});
+		}
+		catch(e){
+
+		}
+		
 	}
 
 	handleDropdownChange = (event, data) =>{
@@ -47,7 +53,12 @@ class VideoWatchLengthDistributionContainer extends Component {
 		}
 		catch(e){
 			return(
-				<DataNotFound />
+				<div style={{width:"100%",height:"100%"}}>
+					<Grid style={{"padding": "1em"}}>
+					<Header as="h1" textAlign="left">Watch Length Distribution</Header>
+					</Grid>
+					<DataNotFound />
+				</div>
 				)
 		}
 		
