@@ -34,9 +34,9 @@ class App extends Component {
 
               <Route exact path="/Student/:uid" render={(props) => (<DashboardContainer userType = "Student" userId = {props.match.params.uid}/>)} />
               <Route exact path="/CourseInstructor/:uid/:courseid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid} courseId = {props.match.params.courseid}/>)} />
-              <Route exact path="/CourseInstructor/:uid" render={(props) => (<DashboardContainer userType = "CourseInstructor" userId = {props.match.params.uid}/>)} />
-              <Route exact path="/CohortAdministrator/:uid" render={(props) => (<DashboardContainer userType = "CohortAdministrator" userId = {props.match.params.uid}/>)} />
-              <Route exact path="/SystemAdministrator/:uid" render={(props) => (<DashboardContainer userType = "SystemAdministrator" userId = {props.match.params.uid}/>)} />
+              <Route exact path="/CourseInstructor/:uid" render={(props) => (<InvalidRoute />)} />
+              <Route exact path="/CohortAdministrator/:uid" render={(props) => (<InvalidRoute />)} />
+              <Route exact path="/SystemAdministrator/:uid" render={(props) => (<InvalidRoute />)} />
 
               <Route path="*" render={(props) => (<InvalidRoute />)} />
             </Switch>
