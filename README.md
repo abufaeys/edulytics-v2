@@ -27,34 +27,34 @@ The theme for Educator is <b>Superpowers</b>. As an educator we identified that 
 ### Student
 
 #### 1) Basic Course Statistics
-<img src="BT3103_2.png" height =800  width = 800 align = "top"/>
+<img src="https://i.imgur.com/z2aOtVG.png" height =800  width = 800 align = "top"/>
 
 Above is the Basic Course Satistics which comprises of Elo Rating, Total levels completed and Average Playtime per level.<b> Elo Rating</b> is our take on gamified ranking system, where by students would not have a definite understanding of how it is calculated, this is to prevent them from abusing the system. In addition, we have chosen to use a rating system as opposed to a hard rank like 1,2,3 as from our findings it is more motivating to see your rating rising rather than having stuck at a particular rank and have no way to find out how you are progressing towards your next rank. As for <b> Total levels played </b> and <b> Average time taken/level </b>, they are simple statistics that allow them to see their work slowly pay off.
 
 
 #### 2) Elo Distribuition Chart
-<img src="BT3103_elo_distribuition.png" height =300  width = 300 align = "top"/>
+<img src="https://i.imgur.com/OPq0yLs.png" height =300  width = 300 align = "top"/>
 Above is the Elo Distribuition Chart. This chart is meant to enable students to see their standings among their peers. Students will be able to track how many students are at a specific rating. By doing so, they will be able to set their goals accordingly to be in a specific range of Elo rating compared to their peers.
 
 
 #### 3) Attribute Pentagram
-<img src="BT3103_attribute.png" height =300  width = 300 align = "top"/>
+<img src = "https://i.imgur.com/gt5mrji.png" height =300  width = 300 align = "top"/>
 
 Above is the Attribute chart with 6 Attribute: Hardworking, Dedication, Mastery, Proactive, Effort and Dligence. For <b>Hardworking</b> we used Assignmens handed in. For <b> Dedication </b> we used Code Combat levels. For <b> Mastery </b> Average Time per level in code combat is used. For <b> Proactive </b> we calculated the time taken for student to hand up assignments and compared it against the course average. For <b> Effort </b> we used the total playtime against the class average. For <b> Dilligence </b> we used watch time and completetion of YouTube tutorials.
 
 
 #### 4) Article Reccomender
-<img src="BT3103_3.png" height =300  width = 600 align = "top"/>
+<img src="https://i.imgur.com/LRuDmwm.png" height =300  width = 600 align = "top"/>
 
 Above is the Article Reccomender. This function, ultilizes the attibute chart to see which areas the student is lacking in. And will reccomend them article based on it. For example, if a student is lacking Dedication and Hardworking attributes, the reccomender who reccomend articles along the lines of improving productivity.
 
 #### 5) CodeCombat Progress Tracker
-<img src="BT3103_4.png" height =300  width = 600 align = "top"/>
+<img src="https://i.imgur.com/pGpzxlv.png" height =300  width = 600 align = "top"/>
 
 Above is the CodeCombat Progress Tracker. This complements Average time per level statistic and enable students to drill down and find out which levels are they lacking. As each level in code combat usually pertain to a certain topic, students can find out which area they are weak in and focus in on them.
 
 #### 6) Assignments Tracker 
-<img src="BT3103_assignment.png" height =300  width = 600 align = "top"/>
+<img src="https://i.imgur.com/xFCAF0o.png" height =300  width = 600 align = "top"/>
 
 Above is the Assignments Tracker. The assignment tracker is built so that student will always be up to date and able to efficiently manage their assignments.
 
