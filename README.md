@@ -62,36 +62,42 @@ Above is the Assignments Tracker. The assignment tracker is built so that studen
 ### Educators
 
 ####1. Course Statistics
-<img src="https://imgur.com/f4ju5p4" height =300  width = 600 align = "center"/>
+<img src="https://i.imgur.com/f4ju5p4.png" height =300  width = 600 align = "center"/>
+
 This segment shows 4 information. In the first box, it shows the course name as well as the course instructor's name. Next, it shows the total number of students in the course. Third, the average Elo rating of the students in the course. Lastly, it is the average Code Combat level completed by the students in the course. The third and the fourth statistics might be more significant to the course instructor as it shows the progress of the students in the course as well as the average ability of the students.
 
 
 ####2. Average Attribute Hexagram
-<img src="https://imgur.com/a/aYFEF" height =300  width = 300 align = "center"/>
+<img src="https://i.imgur.com/a/aYFEF.png" height =300  width = 300 align = "center"/>
 
 
 ####3. Elo Distribution
-<img src="https://imgur.com/a/kahiX" height =300  width = 300 align = "center"/>
+<img src="https://i.imgur.com/a/kahiX.png" height =300  width = 300 align = "center"/>
 
 
 ####4. Leader Board
-<img src="https://imgur.com/a/oQANN" height =300  width = 300 align = "center"/>
+<img src="https://i.imgur.com/a/oQANN.png" height =300  width = 300 align = "center"/>
+
 Above is the Leaderboard showing the top 10 students in the course. The ranking of the students is based on their Elo Rating. This helps the course instructor to know who are stronger or better students in the course. Course instructor will also be able to click on the student names to access the student's dashboard.
 
 ####5. Average Time per Level
-<img src="https://imgur.com/a/6DLur" height =300  width = 300 align = "center"/>
+<img src="https://i.imgur.com/a/6DLur.png" height =300  width = 300 align = "center"/>
+
 Above shows an area chart which highlight the time spent/taken on each Code Combat level. The longer the time taken could possibly meant that the level is harder for the students in the course. This allows the course instructor to understand the standard of the class better.
 
 ####6. Assignment submission time tracker
-<img src="https://imgur.com/a/OrGx2" height =300  width = 300 align = "center"/>
+<img src="https://i.imgur.com/a/OrGx2.png" height =300  width = 300 align = "center"/>
+
 Above is the line chart showing the distribution of the count of the number students who submitted the specific at any one time from 0 to 23. At the top right corner, we have a filter by the various assignments given. This enables the course instructor to have a better understanding of when students usually attempt various assignments and maybe also reflect on the difficulty of the assignment. For example, the submission of the team's documentation assignment, 2 teams actually submitted their documentation at 4am which could means that they faced some difficulties or they started on the documentation late.
 
 ####7. YouTube video completion tracker
-<img src="https://imgur.com/a/U9JQi" height =300  width = 300 align = "center"/>
+<img src="https://i.imgur.com/a/U9JQi.png" height =300  width = 300 align = "center"/>
+
 Above is a stacked bar graph for each video assignment in the course. It records the students who have not watched the video assignment yet. Upon clicking on each bar, the name of the students who have not watch that particular video will appear at the portion below. This value add to course instructor's analysis on each individual student. Students who have not watched the video could means that they are not active or have accidentally missed out on it. Students who consistently did not attempt to watch the video could tell a very different story to the course instructor.
 
-####8. YouTube watch time distribution 
-<img src="https://imgur.com/a/kfaBF" height =300  width = 300 align = "center"/>
+####8. YouTube watch time distribution
+<img src="https://i.imgur.com/a/kfaBF.png" height =300  width = 300 align = "center"/>
+
 Above is the line chart showing the amount of time spent by each individual student on any particular video assignment. On the top right corner, it is a filter for the various video assignments in the course. This chart can help course instructor to understand which student take longer to understand the concept in the video and also possibly which student skim through the video quickly.
 
 
