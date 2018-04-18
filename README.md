@@ -70,9 +70,13 @@ This segment shows 4 information. In the first box, it shows the course name as 
 #### 2) Average Attribute Hexagram
 <img src="https://i.imgur.com/pd3wQKY.png" height =300  width = 300 align = "center"/>
 
+Above is the radar chart showing the average score for the six attributes in the course. This helps the course instructor to have a sense what are some characteristic of the students in the course whether they are competitive or students with very high proficiency.
+
 
 #### 3) Elo Distribution
 <img src="https://i.imgur.com/yKrrUhe.png" height =300  width = 600 align = "center"/>
+
+Above is the area chart showing the number of students that fall under the specific Elo Distribution. From this, course instructor will be able to have a better understanding of the overall performance of the students in the class. It also helps to identity the weaker students for the course instructor to follow up on them.
 
 
 #### 4) Leader Board
