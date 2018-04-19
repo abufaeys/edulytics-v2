@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Header, Dropdown, Grid, Statistic, Card } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import WeakStudentMonitoringCard from './WeakStudentMonitoringCard';
 
@@ -28,35 +29,48 @@ class WeakStudentMonitoringContainer extends Component {
 			}
 			var noOptions = [];
 			var i = 3
-			while (i < studentRankList.length / 2){
+			while (i <= studentRankList.length / 2){
 				noOptions.push({value:i, text:"Bottom " + i});
 				i += 1;
 			}
-			return (
+			if (studentRankList.length > 0){
+				return (
+					<div style={{width:"100%",height:"100%"}}>
+						<Grid style={{"padding": "1em"}} doubling stackable>
+							<Grid.Row columns={2}>
+								<Grid.Column width={10}>
+								<Header as="h1" textAlign="left">Weak Student Monitoring</Header>
+								</Grid.Column>
+								<Grid.Column width={6}>
+								<Dropdown placeholder={"Bottom " + this.state.noStudents} 
+								search fluid button inline options={noOptions} onChange={this.handleDropdownChange} style={{"align": "right"}} />
+								</Grid.Column>
+							</Grid.Row>
+							<Grid.Row columns={5}>
+								{studentRankList.slice(-this.state.noStudents).map((student, index) =>{
+					                    return <Grid.Column stretched style={{"paddingBottom":"2em"}}>
+					                    		<Card fluid>
+					                    			<Statistic label={student.name} value={student.rank} 
+					                    			onClick={() => {this.props.goToDashboard("Student", student.id, "")}} style={{cursor:"pointer"}} />
+					                    			<WeakStudentMonitoringCard userId = {student.id} />
+					                    		</Card>
+					                    		</Grid.Column>;
+					                  })}
+							</Grid.Row>
+						</Grid>
+					</div>
+				)
+			}
+			else{
+				return(
 				<div style={{width:"100%",height:"100%"}}>
-					<Grid style={{"padding": "1em"}} doubling stackable>
-						<Grid.Row columns={2}>
-							<Grid.Column width={10}>
-							<Header as="h1" textAlign="left">Weak Student Monitoring</Header>
-							</Grid.Column>
-							<Grid.Column width={6}>
-							<Dropdown placeholder={"Bottom " + this.state.noStudents} 
-							search fluid button inline options={noOptions} onChange={this.handleDropdownChange} style={{"align": "right"}} />
-							</Grid.Column>
-						</Grid.Row>
-						<Grid.Row columns={5}>
-							{studentRankList.slice(-this.state.noStudents).map((student, index) =>{
-				                    return <Grid.Column stretched style={{"paddingBottom":"2em"}}>
-				                    		<Card fluid>
-				                    			<Statistic label={student.name} value={student.rank} />
-				                    			<WeakStudentMonitoringCard userId = {student.id} />
-				                    		</Card>
-				                    		</Grid.Column>;
-				                  })}
-						</Grid.Row>
+					<Grid style={{"padding": "1em"}}>
+					<Header as="h1" textAlign="left">WeakStudentMonitoring</Header>
 					</Grid>
+					<DataNotFound />
 				</div>
-			)
+				)
+			}
 		}
 		catch(e){
 			return(
@@ -81,6 +95,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+	goToDashboard: (userType, userId, courseId) => push("/" + userType + "/" + userId + "/" + courseId),
 }, dispatch)
 
 export default connect(

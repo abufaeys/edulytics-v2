@@ -39,7 +39,7 @@ const formatData = (chartsDatabase, staticDatabase, userId) => {
 	studentIds.forEach(studentId => {
 		attributes[0] += levelStatus * 100;
 		attributes[1] += completedness * 100;
-		attributes[2] += relativeAvgtime["self"] * 100;
+		attributes[2] += 100-relativeAvgtime["self"] * 100;
 		attributes[3] += proactiveness * 100;
 		attributes[4] += effort["self"] * 100;
 		attributes[5] += diligence;
