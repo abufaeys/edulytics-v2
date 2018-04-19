@@ -80,7 +80,7 @@ Above is the area chart showing the number of students that fall under the speci
 
 
 #### 4) Leader Board
-<img src="https://i.imgur.com/hk1IEYo.png" height =700  width = 200 align = "center"/>
+<img src="https://i.imgur.com/hk1IEYo.png" width = 250 align = "center"/>
 
 Above is the Leaderboard showing the top 10 students in the course. The ranking of the students is based on their Elo Rating. This helps the course instructor to know who are stronger or better students in the course. Course instructor will also be able to click on the student names to access the student's dashboard.
 
