@@ -94,15 +94,25 @@ Above shows an area chart which highlight the time spent/taken on each Code Comb
 
 Above is the line chart showing the distribution of the count of the number students who submitted the specific at any one time from 0 to 23. At the top right corner, we have a filter by the various assignments given. This enables the course instructor to have a better understanding of when students usually attempt various assignments and maybe also reflect on the difficulty of the assignment. For example, the submission of the team's documentation assignment, 2 teams actually submitted their documentation at 4am which could means that they faced some difficulties or they started on the documentation late.
 
-#### 7) YouTube video completion tracker
+#### 7) Submission Distribution tracker
+<img src="https://i.imgur.com/Glzz8gh.png" height =300  width = 600 align = "center"/>
+
+Above is a heat map showing at which period do students usually submit their assignment. The y-axis is the different assignments. The x-axis is the period from the release date of the assignment to the deadline of the assignment divided into 20 bins. This chart helps course instructor to understand the difficulty of each assignment or the overall proactiveness of the students in the course. If students tend to submit towards the end of the deadline could means the assignment is difficult and require the students to put in more effort in completing it. From this, course instructor will be able to have a better understanding of the proficiency level of the students in the course.
+
+#### 8) YouTube video completion tracker
 <img src="https://i.imgur.com/tCaAVHs.png" height =300  width = 600 align = "center"/>
 
 Above is a stacked bar graph for each video assignment in the course. It records the students who have not watched the video assignment yet. Upon clicking on each bar, the name of the students who have not watch that particular video will appear at the portion below. This value add to course instructor's analysis on each individual student. Students who have not watched the video could means that they are not active or have accidentally missed out on it. Students who consistently did not attempt to watch the video could tell a very different story to the course instructor.
 
-#### 8) YouTube watch time distribution
+#### 9) YouTube watch time distribution
 <img src="https://i.imgur.com/8A5NQXa.png" height =300  width = 800 align = "center"/>
 
 Above is the line chart showing the amount of time spent by each individual student on any particular video assignment. On the top right corner, it is a filter for the various video assignments in the course. This chart can help course instructor to understand which student take longer to understand the concept in the video and also possibly which student skim through the video quickly.
+
+#### 10) Weak Student tracker
+<img src="https://i.imgur.com/hHU72bT.png" height =300  width = 800 align = "center"/>
+
+Above is the display for the top 5 weak students in the course. On the top right corner, it is a filter to display the number of students. Each display of student will consist of the ranking in class followed by their names and their six attributes values displayed in a radar chart. This helps course student to identify the weaker students in class and design targeted curriculum to assist them.
 
 
 ## Changes
