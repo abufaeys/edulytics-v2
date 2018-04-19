@@ -14,6 +14,7 @@ import EloHistogram from './CourseInstructorVisuals/EloHistogram';
 import AverageElo from './CourseInstructorVisuals/AverageElo';
 import AverageMastery from './CourseInstructorVisuals/AverageMastery';
 import VideoWatchLengthDistributionContainer from './CourseInstructorVisuals/VideoWatchLengthDistribution/VideoWatchLengthDistributionContainer';
+import WeakStudentMonitoringContainer from './CourseInstructorVisuals/WeakStudentMonitoring/WeakStudentMonitoringContainer';
 
 import InvalidRoute from '../../containers/InvalidRoute';
 /*
@@ -120,7 +121,7 @@ class CourseInstructorContentMain extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Grid as={Card.Group}>
+          <Grid columns={1} as={Card.Group}>
             <Grid.Row>
               <Card fluid>
                 {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
@@ -164,6 +165,16 @@ class CourseInstructorContentMain extends Component {
                 }
               </Card>
             </Grid.Column>
+          </Grid>
+          <Grid columns={1} as={Card.Group}>
+            <Grid.Row>
+              <Grid.Column>
+                {this.props.fetchChartsDatabaseStatus === "FETCHED" ?
+                  <WeakStudentMonitoringContainer courseId = {this.props.courseId} /> :
+                  <Loader active inline='centered'/>
+                }
+              </Grid.Column>
+            </Grid.Row>
           </Grid>
           
         </div>
