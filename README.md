@@ -74,7 +74,7 @@ Above is the radar chart showing the average score for the six attributes in the
 
 
 #### 3) Elo Distribution
-<img src="https://i.imgur.com/yKrrUhe.png" height =300  width = 600 align = "center"/>
+<img src="https://i.imgur.com/yKrrUhe.png" height =300 align = "center"/>
 
 Above is the area chart showing the number of students that fall under the specific Elo Distribution. From this, course instructor will be able to have a better understanding of the overall performance of the students in the class. It also helps to identity the weaker students for the course instructor to follow up on them.
 
@@ -110,7 +110,7 @@ Above is a stacked bar graph for each video assignment in the course. It records
 Above is the line chart showing the amount of time spent by each individual student on any particular video assignment. On the top right corner, it is a filter for the various video assignments in the course. This chart can help course instructor to understand which student take longer to understand the concept in the video and also possibly which student skim through the video quickly.
 
 #### 10) Weak Student tracker
-<img src="https://i.imgur.com/hHU72bT.png" height =300 align = "center"/>
+<img src="https://i.imgur.com/hHU72bT.png" width ="100%" align = "center"/>
 
 Above is the display for the top 5 weak students in the course. On the top right corner, it is a filter to display the number of students. Each display of student will consist of the ranking in class followed by their names and their six attributes values displayed in a radar chart. This helps course student to identify the weaker students in class and design targeted curriculum to assist them.
 
