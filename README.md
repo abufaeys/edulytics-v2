@@ -1,10 +1,10 @@
 # Edulytics
 
-<center>
+<p align="center">
 <a href="https://youtu.be/6HrcKqWbwoY">Project Video</a> | 
 <a href="https://edulytics-437a6.firebaseapp.com/"><b>Deployed App</b></a> | 
 <a href="https://docs.google.com/presentation/d/1Peh-e1ANycTAUHPenZw62cNw6BefMt1uKAL0yBiFzGI/edit#slide=id.p">Slide Deck</a>
-</center>
+</p>
 
 ## Overview
 
@@ -52,13 +52,34 @@ The top row of the student dashboard shows the Basic Course Satistics which comp
 
 The left column of the second row contains the Attribute chart with 6 Attributes: Hardwork, Dedication, Mastery, Proactive, Effort and Diligence. The following table show how each metric is calculated.
 
-|Metric       |Calculation                                    |
-|:-----------:|-----------------------------------------------|
-|Hardwork     |No. of Assignments Submitted                   |
-|Mastery      |Average Time Taken per Code Combat Level       |
-|Proactiveness|Relative Time Taken for Assignment Submissions |
-|Effort       |Relative Total Playtime                        |
-|Diligence    |Completion and Time Taken for Video Assignments|
+<div align="center">
+	<table>
+		<tr>
+			<th>Metric</th>
+			<th>Calculation</th>
+		</tr>
+		<tr>
+			<td>Hardwork</td>
+			<td>No. of Assignments Submitted</td>
+		</tr>
+		<tr>
+			<td>Mastery</td>
+			<td>Average Time Taken per CodeCombat Level</td>
+		</tr>
+		<tr>
+			<td>Proactiveness</td>
+			<td>Relative Time Taken for Assignment Submissions</td>
+		</tr>
+		<tr>
+			<td>Effort</td>
+			<td>Relative Total Playtime</td>
+		</tr>
+		<tr>
+			<td>Diligence</td>
+			<td>Completion and Time Taken for Video Assignments</td>
+		</tr>
+	</table>
+</div>
 
 #### 3) Article Recommendations
 <p align="center"><img src="https://i.imgur.com/LRuDmwm.png" style="width:70%"/></p>
@@ -162,6 +183,5 @@ Exceptions are also handled within components themselves, providing a failsafe s
  - Predictive Analytics
  - Mobile-Friendlier Layout
  - UI Refresh
-<center>
-***by Chen Kuang, Justin, Ryan and Yu Jie***
-</center>
+
+<p align="center"><b><i>by Chen Kuang, Justin, Ryan and Yu Jie</i></b></p>
