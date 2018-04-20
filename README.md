@@ -2,7 +2,7 @@
 
 <center>
 [Project Video](https://youtu.be/6HrcKqWbwoY) | 
-[**Deployed App**](https://edulytics-437a6.firebaseapp.com/) | 
+[Deployed App](https://edulytics-437a6.firebaseapp.com/) | 
 [Slide Deck](https://docs.google.com/presentation/d/1Peh-e1ANycTAUHPenZw62cNw6BefMt1uKAL0yBiFzGI/edit#slide=id.p)
 </center>
 
@@ -16,7 +16,7 @@
     - [Student Features](#student-features)
     - [Educator Features](#educator-features)
     - [App Features](#app-features)
-- [Changelog](#changes)
+- [Changelog](#changelog)
 - [Future Plans](#future-plans)
 
 
@@ -52,6 +52,7 @@ The top row of the student dashboard shows the Basic Course Satistics which comp
 
 The left column of the second row contains the Attribute chart with 6 Attributes: Hardwork, Dedication, Mastery, Proactive, Effort and Diligence. The following table show how each metric is calculated.
 
+<center>
 |Metric       |Calculation                                    |
 |:-----------:|-----------------------------------------------|
 |Hardwork     |No. of Assignments Submitted                   |
@@ -59,7 +60,7 @@ The left column of the second row contains the Attribute chart with 6 Attributes
 |Proactiveness|Relative Time Taken for Assignment Submissions |
 |Effort       |Relative Total Playtime                        |
 |Diligence    |Completion and Time Taken for Video Assignments|
-
+</center>
 
 #### 3) Article Recommendations
 <p align="center"><img src="https://i.imgur.com/LRuDmwm.png" style="width:70%"/></p>
@@ -153,7 +154,7 @@ The app currently reads the user and course ID through the url parameters and pa
 
 Exceptions are also handled within components themselves, providing a failsafe should certain components fail due to any unexpected change in background data. This allows the user to continue navigating without the page breaking. Furthermore, should certain components not render properly due to the redux state, the option to refresh the page would aid in rendering these components from scratch.
 
-## Changelog (Since Presentation)
+## Changelog
  - Weak Student Monitoring Dashboard
  - Exception Handling for Invalid/Missing Data
 
